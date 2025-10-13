@@ -13,5 +13,11 @@ public class Main {
         diaryEntry.printDiaryInfo();
         System.out.println("---------------------------------------");
         diaryEntry2.printDiaryInfo();
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(diaryEntry2.getContentOfSession());
     }
 }

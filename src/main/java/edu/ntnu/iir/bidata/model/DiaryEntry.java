@@ -26,8 +26,12 @@ public class DiaryEntry {
     setMinDuration(duration);
     this.content = content;
     this.author = author;
-    this.duration = duration;
     this.exerciseType = exerciseType;
+  }
+
+  public String getContentOfSession(){
+      return this.content;
+
   }
 
   public void setMinDuration(int duration){
