@@ -24,11 +24,11 @@ public class DiaryEntry {
    *
    * <p>This constructor also assigns a unique ID to every entry and the current date and time
    *
-   * @param title           title of the training session.
-   * @param author          name of the author of the training session.
-   * @param content         notes about the training session.
-   * @param duration        duration of the training session.
-   * @param exerciseType    type of exercise.
+   * @param title title of the training session.
+   * @param author name of the author of the training session.
+   * @param content notes about the training session.
+   * @param duration duration of the training session.
+   * @param exerciseType type of exercise.
    */
   public DiaryEntry(
       String title, String author, String content, int duration, String exerciseType) {
@@ -84,7 +84,6 @@ public class DiaryEntry {
    * Returns the title of this diary entry.
    *
    * @return the title of the entry
-   *
    */
   public String getTitle() {
     return this.title;
@@ -117,6 +116,10 @@ public class DiaryEntry {
     return this.exerciseType;
   }
 
+  public int getDuration() {
+    return this.duration;
+  }
+
   /**
    * Sets a new title for the entry.
    *
@@ -130,7 +133,6 @@ public class DiaryEntry {
    * Sets a new content for the entry.
    *
    * @param content
-   *
    */
   public void setNewContent(String content) {
     this.content = content;
