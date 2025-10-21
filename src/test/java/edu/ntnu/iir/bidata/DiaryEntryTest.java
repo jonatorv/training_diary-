@@ -2,28 +2,61 @@ package edu.ntnu.iir.bidata;
 
 import edu.ntnu.iir.bidata.model.DiaryEntry;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
-
 
 public class DiaryEntryTest {
 
-    @Test
-    public void testValidDuration(){
-        DiaryEntry diaryentry = new DiaryEntry("Langkøyring", "Martin", "Intervalløkt 17x13", 2, "Løping");
-        Assertions.assertEquals(2, diaryentry.getDuration());
-    }
+  private DiaryEntry diaryentry;
 
-    @Test
-    public void testInvalidDuration(){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            DiaryEntry diaryentry2 = new DiaryEntry("Sykling", "Noah", "Halvmaraton", -2, "Løping");
+  @BeforeEach
+  public void setUp() {
+    diaryentry = new DiaryEntry("Langkøyring", "Martin", "Intervalløkt 17x13", 1, "Løping");
+  }
+
+  // Positive tests
+  @Test
+  public void testMinimumValidDuration() {
+    Assertions.assertEquals(1, diaryentry.getDuration());
+  }
+
+  @Test
+  public void testMaximumValidDuration() {
+    diaryentry.setMinDuration(1440);
+    Assertions.assertEquals(1440, diaryentry.getDuration());
+  }
+
+  @Test
+  public void testConstructorSetsAllFieldCorrectly() {
+    Assertions.assertEquals("Langkøyring", diaryentry.getTitle());
+    Assertions.assertEquals("Martin", diaryentry.getAuthor());
+    Assertions.assertEquals("Intervalløkt 17x13", diaryentry.getContentOfSession());
+    Assertions.assertEquals("Løping", diaryentry.getExerciseType());
+  }
+
+  public void testConstructorSets() {
+    Assertions.assertEquals(1, diaryentry.getDuration());
+  }
+
+  @Test
+
+
+  // Negative tests
+  @Test
+  public void testNegativeDuration() {
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          diaryentry.setMinDuration(-1);
         });
-    }
+  }
 
-
-
-
-
+  @Test
+  public void testZeroDuration() {
+    Assertions.assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          diaryentry.setMinDuration(0);
+        });
+  }
 }

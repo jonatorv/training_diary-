@@ -13,17 +13,11 @@ public class Ui {
 
   /** Initializes the diary entries. */
   public void init() {
+
     try {
       diaryEntry1 =
           new DiaryEntry("Afternoon run", "Jonas", "4x4. 4 min på, 2 min av", 2, "Running");
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      System.out.println("------------------------------");
-    }
-
-    try {
-      diaryEntry2 =
-          new DiaryEntry("Afternoon run", "Jonas", "4x4. 4 min på, 2 min av", 1, "Running");
+      diaryEntry2 = new DiaryEntry("Morning run", "Jonas", "4x4. 4 min på, 2 min av", 2, "Running");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       System.out.println("------------------------------");

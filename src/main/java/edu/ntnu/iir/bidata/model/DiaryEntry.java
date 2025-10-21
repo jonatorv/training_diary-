@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 public class DiaryEntry {
   private static int nextId = 0;
   private final int id;
-  private String author = null;
-  private String title = null;
-  private String content = null;
+  private String author;
+  private String title;
+  private String content;
   private int duration;
-  private String exerciseType = null;
+  private String exerciseType;
   private final LocalDateTime date;
 
   /**
@@ -34,11 +34,11 @@ public class DiaryEntry {
       String title, String author, String content, int duration, String exerciseType) {
     nextId = nextId + 1;
     this.id = nextId;
-    this.title = title;
+    setNewTitle(title);
     setMinDuration(duration);
-    this.content = content;
-    this.author = author;
-    this.exerciseType = exerciseType;
+    setNewContent(content);
+    setNewAuthor(author);
+    setNewExerciseType(exerciseType);
     this.date = LocalDateTime.now();
   }
 
@@ -63,11 +63,11 @@ public class DiaryEntry {
       LocalDateTime date) {
     nextId = nextId + 1;
     this.id = nextId;
-    setTitle(title);
+    setNewTitle(title);
     setMinDuration(duration);
-    this.content = content;
-    this.author = author;
-    this.exerciseType = exerciseType;
+    setNewContent(content);
+    setNewAuthor(author);
+    setNewExerciseType(exerciseType);
     this.date = date;
   }
 
@@ -123,42 +123,60 @@ public class DiaryEntry {
   /**
    * Sets a new title for the entry.
    *
-   * @param title
+   * @param title the new title to set.
    */
   public void setNewTitle(String title) {
-    setTitle(title);
+    if (title == null || title.equals("")) {
+      throw new IllegalArgumentException("Title is missing");
+    } else {
+      this.title = title;
+    }
   }
 
   /**
    * Sets a new content for the entry.
    *
-   * @param content
+   * @param content the new content to set.
    */
   public void setNewContent(String content) {
-    this.content = content;
+    if (content == null || content.equals("")) {
+      throw new IllegalArgumentException("Content is missing");
+    } else {
+      this.content = content;
+    }
   }
 
   /**
-   * @param author
-   *     <p>Sets a new author for the entry.
+   * Sets a new author for the entry.
+   *
+   * @param author the new author to set.
    */
   public void setNewAuthor(String author) {
-    this.author = author;
+    if (author == null || author.equals("")) {
+      throw new IllegalArgumentException("Author is missing");
+    } else {
+      this.author = author;
+    }
   }
 
   /**
-   * @param exercise
-   *     <p>Sets a new exercise type for the entry.
+   * Sets a new exercise type for the entry.
+   *
+   * @param exercise the new exercise type to set.
    */
   public void setNewExerciseType(String exercise) {
-    this.exerciseType = exercise;
+    if (exercise == null || exercise.equals("")) {
+      throw new IllegalArgumentException("Exercise type is missing");
+    } else {
+      this.exerciseType = exercise;
+    }
   }
 
   /**
    * Sets a duratoin for the entry. The duration must be greater than 0 and less than 1440. Else it
    * will throw an exception.
    *
-   * @param duration
+   * @param duration the new duration to set.
    */
   public void setMinDuration(int duration) {
     if (duration <= 0) {
@@ -167,19 +185,6 @@ public class DiaryEntry {
       throw new IllegalArgumentException("Duration of the session can not exeed 24 hours");
     } else {
       this.duration = duration;
-    }
-  }
-
-  /**
-   * Sets a new title for the entry. If the title is null or empty, an exception will be thrown.
-   *
-   * @param title
-   */
-  public void setTitle(String title) {
-    if (title == null || title.equals("")) {
-      throw new IllegalArgumentException("Title is missing ");
-    } else {
-      this.title = title;
     }
   }
 
