@@ -126,7 +126,7 @@ public class DiaryEntry {
    * @param title the new title to set.
    */
   public void setNewTitle(String title) {
-    if (title == null || title.equals("")) {
+    if (title == null || title.isEmpty()) {
       throw new IllegalArgumentException("Title is missing");
     } else {
       this.title = title;
@@ -139,7 +139,7 @@ public class DiaryEntry {
    * @param content the new content to set.
    */
   public void setNewContent(String content) {
-    if (content == null || content.equals("")) {
+    if (content == null || content.isEmpty()) {
       throw new IllegalArgumentException("Content is missing");
     } else {
       this.content = content;
@@ -152,7 +152,7 @@ public class DiaryEntry {
    * @param author the new author to set.
    */
   public void setNewAuthor(String author) {
-    if (author == null || author.equals("")) {
+    if (author == null || author.isEmpty()) {
       throw new IllegalArgumentException("Author is missing");
     } else {
       this.author = author;
@@ -165,7 +165,7 @@ public class DiaryEntry {
    * @param exercise the new exercise type to set.
    */
   public void setNewExerciseType(String exercise) {
-    if (exercise == null || exercise.equals("")) {
+    if (exercise == null || exercise.isEmpty()) {
       throw new IllegalArgumentException("Exercise type is missing");
     } else {
       this.exerciseType = exercise;

@@ -1,6 +1,7 @@
 package edu.ntnu.iir.bidata.controller;
 
-import edu.ntnu.iir.bidata.model.DiaryEntry;
+import edu.ntnu.iir.bidata.model.DiaryRegister;
+import java.time.LocalDateTime;
 
 /**
  * Handles the user interface for the diary application.
@@ -8,16 +9,16 @@ import edu.ntnu.iir.bidata.model.DiaryEntry;
  * <p>This class is responsible for initializing the diary entries and starting the application.
  */
 public class Ui {
-  private DiaryEntry diaryEntry1;
-  private DiaryEntry diaryEntry2;
+  private DiaryRegister register;
 
   /** Initializes the diary entries. */
   public void init() {
-
+    register = new DiaryRegister();
     try {
-      diaryEntry1 =
-          new DiaryEntry("Afternoon run", "Jonas", "4x4. 4 min på, 2 min av", 2, "Running");
-      diaryEntry2 = new DiaryEntry("Morning run", "Jonas", "4x4. 4 min på, 2 min av", 2, "Running");
+      register.createAndAddDiaryEntry("Halvmaraton", "Jonas", "Halvmaraton", 90, "løping");
+      register.createAndAddDiaryEntryCustomDate("Halvmaraton", "Jonas", "Halvmaraton", 90, "løping", LocalDateTime.of(2025, 10, 4, 10, 0)
+      );
+
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       System.out.println("------------------------------");
@@ -30,12 +31,15 @@ public class Ui {
     System.out.println("Welcome to the diary application!");
     System.out.println();
 
-    if (diaryEntry1 != null) {
-      diaryEntry1.printDiaryInfo();
-    }
 
-    if (diaryEntry2 != null) {
-      diaryEntry2.printDiaryInfo();
-    }
+    /**
+     * if (diaryEntry1 != null) {
+     *       diaryEntry1.printDiaryInfo();
+     *     }
+     *
+     *     if (diaryEntry2 != null) {
+     *       diaryEntry2.printDiaryInfo();
+     *     }
+     */
   }
 }
