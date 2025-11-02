@@ -1,6 +1,8 @@
 package edu.ntnu.iir.bidata.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 
 /**
  * Diary entry represents a single trainingdiary entry.
@@ -17,7 +19,7 @@ public class DiaryEntry {
   private String content;
   private int duration;
   private String exerciseType;
-  private final LocalDateTime date;
+  private final LocalDate date;
 
   /**
    * Creates a new DiaryEntry with current date.
@@ -39,7 +41,7 @@ public class DiaryEntry {
     setNewContent(content);
     setNewAuthor(author);
     setNewExerciseType(exerciseType);
-    this.date = LocalDateTime.now();
+    this.date = LocalDate.now();
   }
 
   /**
@@ -60,7 +62,7 @@ public class DiaryEntry {
       String content,
       int duration,
       String exerciseType,
-      LocalDateTime date) {
+      LocalDate date) {
     nextId = nextId + 1;
     this.id = nextId;
     setNewTitle(title);
@@ -96,6 +98,15 @@ public class DiaryEntry {
    */
   public String getContentOfSession() {
     return this.content;
+  }
+
+  /**
+   * Returns the date of this diary entry.
+   *
+   * @return the date of the entry
+   */
+  public LocalDate getDate() {
+    return this.date;
   }
 
   /**
@@ -186,19 +197,5 @@ public class DiaryEntry {
     } else {
       this.duration = duration;
     }
-  }
-
-  /** Prints the diary entry information to the console. */
-  public void printDiaryInfo() {
-    System.out.println("ID: " + id);
-    System.out.println();
-    System.out.println("Title: " + title);
-    System.out.println("Author: " + author);
-    System.out.println("Content: " + content);
-    System.out.println("Duration: " + duration + " min");
-    System.out.println("Exercise type: " + exerciseType);
-    System.out.println();
-    System.out.println("Date and time: " + date);
-    System.out.println("-------------------------------------------");
   }
 }
