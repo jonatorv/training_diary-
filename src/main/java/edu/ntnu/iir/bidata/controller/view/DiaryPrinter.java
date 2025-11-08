@@ -41,4 +41,28 @@ public class DiaryPrinter {
       }
     }
   }
+
+  /** Prints a welcome message to the console. */
+  public void printWelcomeMessage(){
+    System.out.println("Welcome to the diary application! Press 0 to start the application");
+  }
+
+  public void printChooseOperationMessage(){
+    System.out.println("Choose a operation from the menu!");
+  }
+
+  public void printEnterYearMessage(){
+    System.out.println("Enter year: ");
+  }
+
+  public void printEnterMonthMessage(){
+    System.out.println("Enter month: ");
+  }
+
+  public void printEnterDayMessage(){
+    System.out.println("Enter day: ");
+  }
+
+
+
 }

@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 /**
- * Diary register is a collection of diary entries. It is responsible for storing and managing.
+ * Diary register is a collection of diary entries. It is responsible for storing and managing DiaryEntry objects..
  */
 public class DiaryRegister {
   private ArrayList<DiaryEntry> diaryEntries;
@@ -36,8 +37,9 @@ public class DiaryRegister {
   }
 
   /** Returns the diary entries. */
-  public ArrayList<DiaryEntry> getDiaryEntries() {
-    return diaryEntries;
+  public List<DiaryEntry> getDiaryEntries() {
+    ArrayList<DiaryEntry> result = new ArrayList<>(diaryEntries);
+    return result;
   }
 
   /** Deletes all diary entries from a specific date. */
@@ -55,7 +57,7 @@ public class DiaryRegister {
   }
 
   /** Finds all diary entries on a specific date. */
-  public ArrayList<DiaryEntry> findDiaryEntriesByDate(LocalDate date) {
+  public List<DiaryEntry> findDiaryEntriesByDate(LocalDate date) {
     ArrayList<DiaryEntry> result = new ArrayList<>();
     for (DiaryEntry entry : diaryEntries) {
       if (entry.getDate().isEqual(date)) {
@@ -71,7 +73,7 @@ public class DiaryRegister {
   }
 
   /** Sorts the diary entries by date. The newest entry is first. */
-  public ArrayList<DiaryEntry> getSortedDiaryEntriesByDate() {
+  public List<DiaryEntry> getSortedDiaryEntriesByDate() {
     ArrayList<DiaryEntry> sortedList = new ArrayList<>(diaryEntries);
     sortedList.sort(Comparator.comparing(DiaryEntry::getDate).reversed());
     if (sortedList.isEmpty()) {
