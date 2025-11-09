@@ -7,7 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Diary register is a collection of diary entries. It is responsible for storing and managing DiaryEntry objects..
+ * Diary register is a collection of diary entries. It is responsible for storing and managing
+ * DiaryEntry objects..
  */
 public class DiaryRegister {
   private ArrayList<DiaryEntry> diaryEntries;
@@ -66,7 +67,7 @@ public class DiaryRegister {
     }
     if (result.isEmpty()) {
       throw new IllegalArgumentException(
-          "There are no registered training sessions on" + date + ".");
+          "There are no registered training sessions on " + date + ".");
     } else {
       return result;
     }

@@ -1,6 +1,9 @@
 package edu.ntnu.iir.bidata.controller.menus;
 
 public enum EntryOverview {
-  SHOW_ALL_ENTRIES,
-  SHOW_ENTRIES_FROM_DATE;
+  PRINT_ALL_DIARY_ENTRIES,
+  PRINT_DIARY_ENTRIES_FROM_DATE,
+  PRINT_DIARY_ENTRIES_SORTED_BY_DATE,
+  EXIT;
+
 }
