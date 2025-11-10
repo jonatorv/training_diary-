@@ -26,9 +26,10 @@ public class DiaryPrinter {
   /** Prints all diary entries to the console. */
   public void printAllDiaryEntries(DiaryRegister register) {
     if (register.getDiaryEntries().isEmpty()) {
-      System.out.println("No entries found");
+      System.out.println("No diary entries found");
       return;
     }
+    System.out.println("All diary entries: ");
     for (DiaryEntry entry : register.getDiaryEntries()) {
       printDiaryEntry(entry);
     }
@@ -37,11 +38,17 @@ public class DiaryPrinter {
   /** Prints all diary entries from a specific date to the console. */
   public void printDiaryEntryFromDate(LocalDate date, DiaryRegister register) {
     if (date.isAfter(LocalDate.now())) {
-      throw new IllegalArgumentException("Sorry! There are no entries registred in the future");
+      System.out.println("Sorry! You cannot search for entries in the future.");
+        return;
     }
 
     try {
       List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
+      if (entries.isEmpty()){
+        System.out.println("No diary entries found on " + date);
+        return;
+      }
+      System.out.println("Diary entries from " + date + ": ");
       for (DiaryEntry entry : entries) {
         printDiaryEntry(entry);
       }
@@ -53,6 +60,10 @@ public class DiaryPrinter {
   public void printDiaryEntriesSortedByDate(DiaryRegister register) {
     try {
       List<DiaryEntry> entries = register.getSortedDiaryEntriesByDate();
+      if (entries.isEmpty()){
+        System.out.println("No diary entries found");
+        return;
+      }
       System.out.println("Diary entries sorted by date (newest first): ");
       for (DiaryEntry entry : entries) {
         printDiaryEntry(entry);
@@ -64,12 +75,37 @@ public class DiaryPrinter {
 
   /** Prints a welcome message to the console. */
   public void printWelcomeMessage() {
-    System.out.println("Welcome to the diary application! Press 0 to start the application");
+    System.out.println("Welcome to your personal training diary!");
+    System.out.println("Choose one of the options below:");
+    System.out.println("0: Open the overview menu");
+    System.out.println("1: Open the entry administration menu");
+    System.out.println("2: Exit the application");
+    System.out.println("--------------------------------------------------------------------------->");
+
+
+
+
   }
 
   /** Prints a choose operation message to the console. */
   public void printChooseOperationMessage() {
-    System.out.println("Choose a operation from the menu!");
+    System.out.println("--------------------------------------------------------------------------->");
+    System.out.println("Choose an operation:");
+    System.out.println("0: Show all diary entries");
+    System.out.println("1: Show diary entries from a specific date");
+    System.out.println("2: Show diary entries sorted by date (newest first)");
+    System.out.println("3: Return to the main menu");
+    System.out.println("--------------------------------------------------------------------------->");
+  }
+
+  public void printAdministrationMenuMessage(){
+    System.out.println("Choose an operation from the entry administration menu:");
+    System.out.println("0: Add a new diary entry");
+    System.out.println("1: Add a new diary entry with custom date");
+    System.out.println("2: Delete a diary entry");
+    System.out.println("3: Return to the main menu");
+    System.out.println("--------------------------------------------------------------------------->");
+
   }
 
   /** Prints a enter year message to the console. */
@@ -89,27 +125,31 @@ public class DiaryPrinter {
 
   /** Prints a enter title message to the console. */
   public void printEnterTitleMessage(){
-    System.out.println("Enter title: ");
+    System.out.println("Please enter the title of the trainingsession: ");
   }
 
   /** Prints a enter author message to the console. */
   public void printEnterAuthorMessage(){
-    System.out.println("Enter author: ");
+    System.out.println("Enter your name: ");
   }
 
   /** Prints a enter content message to the console. */
   public void printEnterContentMessage(){
-    System.out.println("Enter content: ");
+    System.out.println("Write a short description or reflection about the session: ");
   }
 
   /** Prints a enter duration message to the console. */
   public void printEnterDurationMessage(){
-    System.out.println("Enter duration: ");
+    System.out.println("How long did the session last (in minutes)?");
   }
 
   /** Prints a enter exercise type message to the console. */
   public void printEnterExerciseTypeMessage(){
-    System.out.println("Enter exercise type: ");
+    System.out.println("Enter the type of exercise (for example running, cycling or strength)");
   }
 
+  public void printInvalidOptionMessage() {
+    System.out.println("Invalid option! Please try again.");
+    System.out.println();
+  }
 }

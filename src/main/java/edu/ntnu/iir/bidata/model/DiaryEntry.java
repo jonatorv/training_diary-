@@ -18,7 +18,7 @@ public class DiaryEntry {
   private String content;
   private int duration;
   private String exerciseType;
-  private final LocalDate date;
+  private LocalDate date;
 
   /**
    * Creates a new DiaryEntry with current date.
@@ -69,7 +69,7 @@ public class DiaryEntry {
     setNewContent(content);
     setNewAuthor(author);
     setNewExerciseType(exerciseType);
-    this.date = date;
+    setDate(date);
   }
 
   /**
@@ -137,7 +137,7 @@ public class DiaryEntry {
    */
   public void setNewTitle(String title) {
     if (title == null || title.isEmpty()) {
-      throw new IllegalArgumentException("Title is missing");
+      throw new IllegalArgumentException("Title is missing - diary entry could not be created!");
     } else {
       this.title = title;
     }
@@ -150,7 +150,7 @@ public class DiaryEntry {
    */
   public void setNewContent(String content) {
     if (content == null || content.isEmpty()) {
-      throw new IllegalArgumentException("Content is missing");
+      throw new IllegalArgumentException("Content is missing - diary entry could not be created!");
     } else {
       this.content = content;
     }
@@ -163,7 +163,7 @@ public class DiaryEntry {
    */
   public void setNewAuthor(String author) {
     if (author == null || author.isEmpty()) {
-      throw new IllegalArgumentException("Author is missing");
+      throw new IllegalArgumentException("Author is missing - diary entry could not be created!");
     } else {
       this.author = author;
     }
@@ -176,7 +176,7 @@ public class DiaryEntry {
    */
   public void setNewExerciseType(String exercise) {
     if (exercise == null || exercise.isEmpty()) {
-      throw new IllegalArgumentException("Exercise type is missing");
+      throw new IllegalArgumentException("Exercise type is missing - diary entry could not be created!");
     } else {
       this.exerciseType = exercise;
     }
@@ -195,6 +195,20 @@ public class DiaryEntry {
       throw new IllegalArgumentException("Duration of the session can not exeed 24 hours");
     } else {
       this.duration = duration;
+    }
+  }
+
+  /**
+   * Sets a new date for the entry. Date cannot be in the future.
+   *
+   * @param date the new date to set.
+   */
+  public void setDate(LocalDate date) {
+    if (date.isAfter(LocalDate.now())) {
+      throw new IllegalArgumentException("You cannot set a date in the future - diary entry could not be created!");
+    }
+    else {
+      this.date = date;
     }
   }
 }

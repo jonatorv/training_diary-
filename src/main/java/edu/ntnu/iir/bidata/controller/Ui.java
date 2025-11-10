@@ -5,6 +5,7 @@ import edu.ntnu.iir.bidata.controller.menus.EntryOverview;
 import edu.ntnu.iir.bidata.controller.menus.MainMenu;
 import edu.ntnu.iir.bidata.controller.view.DiaryPrinter;
 import edu.ntnu.iir.bidata.model.DiaryRegister;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -45,16 +46,23 @@ public class Ui {
 
     while (running) {
       int mainMenuChoice = inputReader.nextInt();
-      MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
+      if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
+        printer.printInvalidOptionMessage();
+        continue;
+      }
 
+      MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
       switch (mainMenu) {
         // --------------------------------------------------------------------------------------------
         case ENTRY_OVERVIEW:
           boolean runningOverviewMenu = true;
-
           while (runningOverviewMenu) {
             printer.printChooseOperationMessage();
             int overviewMenuChoice = inputReader.nextInt();
+            if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
+              printer.printInvalidOptionMessage();
+              continue;
+            }
             EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
             switch (entryOverview) {
@@ -84,10 +92,11 @@ public class Ui {
 
               case EXIT:
                 runningOverviewMenu = false;
+                printer.printWelcomeMessage();
                 break;
 
               default:
-                System.out.println("Invalid option! Try again.");
+                printer.printInvalidOptionMessage();
                 break;
             }
           }
@@ -98,32 +107,96 @@ public class Ui {
           boolean runningAdministrationMenu = true;
 
           while (runningAdministrationMenu) {
+            printer.printAdministrationMenuMessage();
             int administrationMenuChoice = inputReader.nextInt();
+            if (administrationMenuChoice < 0
+                || administrationMenuChoice >= EntryAdministrations.values().length) {
+              printer.printInvalidOptionMessage();
+              continue;
+            }
             EntryAdministrations entryAdministrations =
                 EntryAdministrations.values()[administrationMenuChoice];
 
+            String title;
+            String author;
+            String content;
+            int duration = 0;
+            String exerciseType;
+            int day = 0;
+            int month = 0;
+            int year = 0;
+
             switch (entryAdministrations) {
               case CREATE_AND_ADD_DIARY_ENTRY:
+                inputReader.nextLine();
                 printer.printEnterTitleMessage();
-                String title = inputReader.next();
+                title = inputReader.nextLine();
                 printer.printEnterAuthorMessage();
-                String author = inputReader.next();
+                author = inputReader.nextLine();
                 printer.printEnterContentMessage();
-                String content = inputReader.next();
+                content = inputReader.nextLine();
                 printer.printEnterDurationMessage();
-                int duration = inputReader.nextInt();
+                duration = inputReader.nextInt();
                 printer.printEnterExerciseTypeMessage();
-                String exerciseType = inputReader.next();
+                exerciseType = inputReader.next();
 
-                register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
+                try {
+                  register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
+                } catch (IllegalArgumentException e) {
+                  System.out.println(e.getMessage());
+                }
+                break;
+
+              case CREATE_AND_ADD_DIARY_ENTRY_CUSTOM_DATE:
+                inputReader.nextLine();
+                printer.printEnterTitleMessage();
+                title = inputReader.nextLine();
+                printer.printEnterAuthorMessage();
+                author = inputReader.nextLine();
+                printer.printEnterContentMessage();
+                content = inputReader.nextLine();
+                printer.printEnterDurationMessage();
+                duration = inputReader.nextInt();
+                printer.printEnterExerciseTypeMessage();
+                exerciseType = inputReader.next();
+
+                try {
+                  printer.printEnterDayMessage();
+                  day = inputReader.nextInt();
+                  printer.printEnterMonthMessage();
+                  month = inputReader.nextInt();
+                  printer.printEnterYearMessage();
+                  year = inputReader.nextInt();
+
+                  LocalDate date = LocalDate.of(year, month, day);
+
+                  register.createAndAddDiaryEntryCustomDate(
+                      title, author, content, duration, exerciseType, date);
+                } catch (DateTimeException e) {
+                  System.out.println(e.getMessage());
+                } catch (IllegalArgumentException e) {
+                  System.out.println(e.getMessage());
+                }
+                break;
+
+              case DELETE_DIARY_ENTRY_FROM_DATE:
+                printer.printEnterDayMessage();
+                day = inputReader.nextInt();
+                printer.printEnterMonthMessage();
+                month = inputReader.nextInt();
+                printer.printEnterYearMessage();
+                year = inputReader.nextInt();
+                LocalDate date = LocalDate.of(year, month, day);
+                register.deleteDiaryEntryFromDate(date);
                 break;
 
               case EXIT:
                 runningAdministrationMenu = false;
+                printer.printWelcomeMessage();
                 break;
 
               default:
-                System.out.println("Invalid option! Try again.");
+                printer.printInvalidOptionMessage();
                 break;
             }
           }
@@ -134,7 +207,7 @@ public class Ui {
           break;
 
         default:
-          System.out.println("Invalid option! Try again.");
+          printer.printInvalidOptionMessage();
           break;
       }
     }

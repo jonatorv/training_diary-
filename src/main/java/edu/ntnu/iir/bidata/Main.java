@@ -9,7 +9,7 @@ import edu.ntnu.iir.bidata.controller.Ui;
 public class Main {
 
   /**
-   * The main method. This is where the application starts.
+   * The main method. This is where the application initialization and starting takes place.
    *
    * @param args the command line arguments
    */
