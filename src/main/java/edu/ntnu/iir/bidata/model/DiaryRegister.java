@@ -39,8 +39,7 @@ public class DiaryRegister {
 
   /** Returns the diary entries. */
   public List<DiaryEntry> getDiaryEntries() {
-    ArrayList<DiaryEntry> result = new ArrayList<>(diaryEntries);
-    return result;
+    return new ArrayList<>(diaryEntries);
   }
 
   /** Deletes all diary entries from a specific date. */

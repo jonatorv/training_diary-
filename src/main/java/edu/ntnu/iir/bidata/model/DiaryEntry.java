@@ -2,7 +2,6 @@ package edu.ntnu.iir.bidata.model;
 
 import java.time.LocalDate;
 
-
 /**
  * Diary entry represents a single trainingdiary entry.
  *
@@ -176,7 +175,8 @@ public class DiaryEntry {
    */
   public void setNewExerciseType(String exercise) {
     if (exercise == null || exercise.isEmpty()) {
-      throw new IllegalArgumentException("Exercise type is missing - diary entry could not be created!");
+      throw new IllegalArgumentException(
+          "Exercise type is missing - " + "diary entry could not be created!");
     } else {
       this.exerciseType = exercise;
     }
@@ -205,9 +205,9 @@ public class DiaryEntry {
    */
   public void setDate(LocalDate date) {
     if (date.isAfter(LocalDate.now())) {
-      throw new IllegalArgumentException("You cannot set a date in the future - diary entry could not be created!");
-    }
-    else {
+      throw new IllegalArgumentException(
+          "You cannot set a date in the future - " + "diary entry could not be created!");
+    } else {
       this.date = date;
     }
   }

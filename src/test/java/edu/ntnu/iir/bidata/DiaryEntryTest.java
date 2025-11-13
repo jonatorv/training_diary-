@@ -34,12 +34,10 @@ public class DiaryEntryTest {
     Assertions.assertEquals("Løping", diaryentry.getExerciseType());
   }
 
+  @Test
   public void testConstructorSets() {
     Assertions.assertEquals(1, diaryentry.getDuration());
   }
-
-  @Test
-
 
   // Negative tests
   @Test
