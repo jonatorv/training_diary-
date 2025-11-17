@@ -47,13 +47,13 @@ public class Ui {
 
     while (running) {
       int mainMenuChoice = 0;
-      try{
+      try {
         mainMenuChoice = inputReader.nextInt();
       } catch (InputMismatchException e) {
-        System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+        System.out.println(
+            "Invalid input - please enter a number corresponding to the menu options!");
         inputReader.nextLine();
       }
-
 
       if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
@@ -67,43 +67,48 @@ public class Ui {
           while (runningOverviewMenu) {
             printer.printChooseOperationMessage();
             int overviewMenuChoice = 0;
-            try{
+            Boolean invalid = false;
+            try {
               overviewMenuChoice = inputReader.nextInt();
             } catch (InputMismatchException e) {
-              System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+              System.out.println(
+                  "Invalid input - please enter a number corresponding to the menu options!");
               inputReader.nextLine();
+              invalid = true;
             }
 
-            if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
+            if (invalid
+                || overviewMenuChoice < 0
+                || overviewMenuChoice >= EntryOverview.values().length) {
               printer.printInvalidOptionMessage();
-            }
-            EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
+            } else {
+              EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
-            switch (entryOverview) {
-              case PRINT_ALL_DIARY_ENTRIES:
-                printer.printAllDiaryEntries(register);
-                break;
+              switch (entryOverview) {
+                case PRINT_ALL_DIARY_ENTRIES:
+                  printer.printAllDiaryEntries(register);
+                  break;
 
-              case PRINT_DIARY_ENTRIES_FROM_DATE:
-                printDiaryEntryFromDate(inputReader);
-                break;
+                case PRINT_DIARY_ENTRIES_FROM_DATE:
+                  printDiaryEntryFromDate(inputReader);
+                  break;
 
-              case PRINT_DIARY_ENTRIES_SORTED_BY_DATE:
-                printer.printDiaryEntriesSortedByDate(register);
-                break;
+                case PRINT_DIARY_ENTRIES_SORTED_BY_DATE:
+                  printer.printDiaryEntriesSortedByDate(register);
+                  break;
 
-              case EXIT:
-                runningOverviewMenu = false;
-                printer.printWelcomeMessage();
-                break;
+                case EXIT:
+                  runningOverviewMenu = false;
+                  printer.printWelcomeMessage();
+                  break;
 
-              default:
-                printer.printInvalidOptionMessage();
-                break;
+                default:
+                  printer.printInvalidOptionMessage();
+                  break;
+              }
             }
           }
           break;
-
         // ---------------------------------------------------------------------------------------
         case ENTRY_ADMINISTRATIONS:
           boolean runningAdministrationMenu = true;
@@ -111,10 +116,11 @@ public class Ui {
           while (runningAdministrationMenu) {
             printer.printAdministrationMenuMessage();
             int administrationMenuChoice = 0;
-            try{
+            try {
               administrationMenuChoice = inputReader.nextInt();
             } catch (InputMismatchException e) {
-              System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+              System.out.println(
+                  "Invalid input - please enter a number corresponding to the menu options!");
               inputReader.nextLine();
             }
 
@@ -250,7 +256,6 @@ public class Ui {
       System.out.println(e.getMessage());
     }
   }
-
 
   private void printDiaryEntryFromDate(Scanner inputReader) {
     try {
