@@ -1,5 +1,6 @@
 package edu.ntnu.iir.bidata.model;
 
+import edu.ntnu.iir.bidata.controller.view.DiaryPrinter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;

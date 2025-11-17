@@ -152,4 +152,8 @@ public class DiaryPrinter {
     System.out.println("Invalid option! Please try again.");
     System.out.println();
   }
+
+  public void deleteDiaryEntryMessage() {
+    System.out.println("Diary entry deleted successfully.");
+  }
 }

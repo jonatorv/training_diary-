@@ -7,6 +7,7 @@ import edu.ntnu.iir.bidata.controller.view.DiaryPrinter;
 import edu.ntnu.iir.bidata.model.DiaryRegister;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -48,7 +49,6 @@ public class Ui {
       int mainMenuChoice = inputReader.nextInt();
       if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
-        continue;
       }
 
       MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
@@ -61,7 +61,6 @@ public class Ui {
             int overviewMenuChoice = inputReader.nextInt();
             if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
               printer.printInvalidOptionMessage();
-              continue;
             }
             EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
@@ -71,19 +70,7 @@ public class Ui {
                 break;
 
               case PRINT_DIARY_ENTRIES_FROM_DATE:
-                printer.printEnterDayMessage();
-                int day = inputReader.nextInt();
-                printer.printEnterMonthMessage();
-                int month = inputReader.nextInt();
-                printer.printEnterYearMessage();
-                int year = inputReader.nextInt();
-                LocalDate date = LocalDate.of(year, month, day);
-
-                try {
-                  printer.printDiaryEntryFromDate(date, register);
-                } catch (IllegalArgumentException e) {
-                  System.out.println(e.getMessage());
-                }
+                printDiaryEntryFromDate(inputReader);
                 break;
 
               case PRINT_DIARY_ENTRIES_SORTED_BY_DATE:
@@ -117,77 +104,17 @@ public class Ui {
             EntryAdministrations entryAdministrations =
                 EntryAdministrations.values()[administrationMenuChoice];
 
-            String title;
-            String author;
-            String content;
-            int duration = 0;
-            String exerciseType;
-            int day = 0;
-            int month = 0;
-            int year = 0;
-
             switch (entryAdministrations) {
               case CREATE_AND_ADD_DIARY_ENTRY:
-                inputReader.nextLine();
-                printer.printEnterTitleMessage();
-                title = inputReader.nextLine();
-                printer.printEnterAuthorMessage();
-                author = inputReader.nextLine();
-                printer.printEnterContentMessage();
-                content = inputReader.nextLine();
-                printer.printEnterDurationMessage();
-                duration = inputReader.nextInt();
-                printer.printEnterExerciseTypeMessage();
-                exerciseType = inputReader.next();
-
-                try {
-                  register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
-                } catch (IllegalArgumentException e) {
-                  System.out.println(e.getMessage());
-                }
+                createAndAddDiaryEntry(inputReader);
                 break;
 
               case CREATE_AND_ADD_DIARY_ENTRY_CUSTOM_DATE:
-                inputReader.nextLine();
-                printer.printEnterTitleMessage();
-                title = inputReader.nextLine();
-                printer.printEnterAuthorMessage();
-                author = inputReader.nextLine();
-                printer.printEnterContentMessage();
-                content = inputReader.nextLine();
-                printer.printEnterDurationMessage();
-                duration = inputReader.nextInt();
-                printer.printEnterExerciseTypeMessage();
-                exerciseType = inputReader.next();
-
-                try {
-                  printer.printEnterDayMessage();
-                  day = inputReader.nextInt();
-                  printer.printEnterMonthMessage();
-                  month = inputReader.nextInt();
-                  printer.printEnterYearMessage();
-                  year = inputReader.nextInt();
-
-                  LocalDate date = LocalDate.of(year, month, day);
-
-                  register.createAndAddDiaryEntryCustomDate(
-                      title, author, content, duration, exerciseType, date);
-                } catch (DateTimeException e) {
-                  System.out.println(e.getMessage());
-                } catch (IllegalArgumentException e) {
-                  System.out.println(e.getMessage());
-                }
+                createAndAddDiaryEntryCustomDate(inputReader);
                 break;
 
               case DELETE_DIARY_ENTRY_FROM_DATE:
-                printer.printEnterDayMessage();
-                day = inputReader.nextInt();
-                printer.printEnterMonthMessage();
-                month = inputReader.nextInt();
-                printer.printEnterYearMessage();
-                year = inputReader.nextInt();
-                LocalDate date = LocalDate.of(year, month, day);
-                register.deleteDiaryEntryFromDate(date);
+                deleteDiaryEntryFromDate(inputReader);
                 break;
 
               case EXIT:
@@ -210,6 +137,127 @@ public class Ui {
           printer.printInvalidOptionMessage();
           break;
       }
+    }
+  }
+
+  private void deleteDiaryEntryFromDate(Scanner inputReader) {
+    int day;
+    int year;
+    int month;
+    try{
+      printer.printEnterDayMessage();
+      day = inputReader.nextInt();
+      printer.printEnterMonthMessage();
+      month = inputReader.nextInt();
+      printer.printEnterYearMessage();
+      year = inputReader.nextInt();
+      LocalDate date = LocalDate.of(year, month, day);
+      register.deleteDiaryEntryFromDate(date);
+    } catch (InputMismatchException e) {
+      System.out.println("Date must be an number - diary entry could not be deleted!");
+      inputReader.nextLine();
+    } catch (DateTimeException e) {
+      System.out.println("Invalid date entered- diary entry could not be deleted!");
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  private void createAndAddDiaryEntryCustomDate(Scanner inputReader) {
+    String exerciseType;
+    int month;
+    int year;
+    int day;
+    String content;
+    String author;
+    int duration;
+    String title;
+    inputReader.nextLine();
+    printer.printEnterTitleMessage();
+    title = inputReader.nextLine();
+    printer.printEnterAuthorMessage();
+    author = inputReader.nextLine();
+    printer.printEnterContentMessage();
+    content = inputReader.nextLine();
+    printer.printEnterDurationMessage();
+    try{
+      duration = inputReader.nextInt();
+    } catch (InputMismatchException e) {
+      System.out.println("Duration must be an number - diary entry could not be created!");
+      inputReader.nextLine();
+      return;
+    }
+    printer.printEnterExerciseTypeMessage();
+    exerciseType = inputReader.next();
+
+    try {
+      printer.printEnterDayMessage();
+      day = inputReader.nextInt();
+      printer.printEnterMonthMessage();
+      month = inputReader.nextInt();
+      printer.printEnterYearMessage();
+      year = inputReader.nextInt();
+
+      LocalDate date = LocalDate.of(year, month, day);
+
+      register.createAndAddDiaryEntryCustomDate(
+          title, author, content, duration, exerciseType, date);
+    } catch (DateTimeException e) {
+      System.out.println("Invalid date entered - diary entry could not be created!");
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  private void createAndAddDiaryEntry(Scanner inputReader) {
+    String content;
+    int duration;
+    String author;
+    String exerciseType;
+    String title;
+    inputReader.nextLine();
+    printer.printEnterTitleMessage();
+    title = inputReader.nextLine();
+    printer.printEnterAuthorMessage();
+    author = inputReader.nextLine();
+    printer.printEnterContentMessage();
+    content = inputReader.nextLine();
+    printer.printEnterDurationMessage();
+    try{
+      duration = inputReader.nextInt();
+    } catch (InputMismatchException e) {
+      System.out.println("Duration must be an number - diary entry could not be created!");
+      inputReader.nextLine();
+      return;
+    }
+    printer.printEnterExerciseTypeMessage();
+    exerciseType = inputReader.next();
+
+    try {
+      register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  private void printDiaryEntryFromDate(Scanner inputReader) {
+    try{
+    printer.printEnterDayMessage();
+    int day = inputReader.nextInt();
+    printer.printEnterMonthMessage();
+    int month = inputReader.nextInt();
+    printer.printEnterYearMessage();
+    int year = inputReader.nextInt();
+    LocalDate date = LocalDate.of(year, month, day);
+    printer.printDiaryEntryFromDate(date, register);
+
+    } catch (InputMismatchException e) {
+      System.out.println("Date must be an number - diary entry could not be printed!");
+      inputReader.nextLine();
+    } catch (DateTimeException e) {
+        System.out.println("Invalid date entered - diary entry could not be printed!");
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
     }
   }
 }
