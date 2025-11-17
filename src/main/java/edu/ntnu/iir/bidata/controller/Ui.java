@@ -46,19 +46,34 @@ public class Ui {
     boolean running = true;
 
     while (running) {
-      int mainMenuChoice = inputReader.nextInt();
+      int mainMenuChoice = 0;
+      try{
+        mainMenuChoice = inputReader.nextInt();
+      } catch (InputMismatchException e) {
+        System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+        inputReader.nextLine();
+      }
+
+
       if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
       }
 
       MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
       switch (mainMenu) {
-        // --------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------
         case ENTRY_OVERVIEW:
           boolean runningOverviewMenu = true;
           while (runningOverviewMenu) {
             printer.printChooseOperationMessage();
-            int overviewMenuChoice = inputReader.nextInt();
+            int overviewMenuChoice = 0;
+            try{
+              overviewMenuChoice = inputReader.nextInt();
+            } catch (InputMismatchException e) {
+              System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+              inputReader.nextLine();
+            }
+
             if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
               printer.printInvalidOptionMessage();
             }
@@ -95,7 +110,14 @@ public class Ui {
 
           while (runningAdministrationMenu) {
             printer.printAdministrationMenuMessage();
-            int administrationMenuChoice = inputReader.nextInt();
+            int administrationMenuChoice = 0;
+            try{
+              administrationMenuChoice = inputReader.nextInt();
+            } catch (InputMismatchException e) {
+              System.out.println("Invalid input - please enter a number corresponding to the menu options!");
+              inputReader.nextLine();
+            }
+
             if (administrationMenuChoice < 0
                 || administrationMenuChoice >= EntryAdministrations.values().length) {
               printer.printInvalidOptionMessage();
@@ -144,7 +166,7 @@ public class Ui {
     int day;
     int year;
     int month;
-    try{
+    try {
       printer.printEnterDayMessage();
       day = inputReader.nextInt();
       printer.printEnterMonthMessage();
@@ -164,23 +186,16 @@ public class Ui {
   }
 
   private void createAndAddDiaryEntryCustomDate(Scanner inputReader) {
-    String exerciseType;
-    int month;
-    int year;
-    int day;
-    String content;
-    String author;
-    int duration;
-    String title;
     inputReader.nextLine();
     printer.printEnterTitleMessage();
-    title = inputReader.nextLine();
+    String title = inputReader.nextLine();
     printer.printEnterAuthorMessage();
-    author = inputReader.nextLine();
+    String author = inputReader.nextLine();
     printer.printEnterContentMessage();
-    content = inputReader.nextLine();
+    String content = inputReader.nextLine();
     printer.printEnterDurationMessage();
-    try{
+    int duration;
+    try {
       duration = inputReader.nextInt();
     } catch (InputMismatchException e) {
       System.out.println("Duration must be an number - diary entry could not be created!");
@@ -188,15 +203,15 @@ public class Ui {
       return;
     }
     printer.printEnterExerciseTypeMessage();
-    exerciseType = inputReader.next();
+    String exerciseType = inputReader.next();
 
     try {
       printer.printEnterDayMessage();
-      day = inputReader.nextInt();
+      int day = inputReader.nextInt();
       printer.printEnterMonthMessage();
-      month = inputReader.nextInt();
+      int month = inputReader.nextInt();
       printer.printEnterYearMessage();
-      year = inputReader.nextInt();
+      int year = inputReader.nextInt();
 
       LocalDate date = LocalDate.of(year, month, day);
 
@@ -210,20 +225,16 @@ public class Ui {
   }
 
   private void createAndAddDiaryEntry(Scanner inputReader) {
-    String content;
-    int duration;
-    String author;
-    String exerciseType;
-    String title;
     inputReader.nextLine();
     printer.printEnterTitleMessage();
-    title = inputReader.nextLine();
+    String title = inputReader.nextLine();
     printer.printEnterAuthorMessage();
-    author = inputReader.nextLine();
+    String author = inputReader.nextLine();
     printer.printEnterContentMessage();
-    content = inputReader.nextLine();
+    String content = inputReader.nextLine();
     printer.printEnterDurationMessage();
-    try{
+    int duration;
+    try {
       duration = inputReader.nextInt();
     } catch (InputMismatchException e) {
       System.out.println("Duration must be an number - diary entry could not be created!");
@@ -231,7 +242,7 @@ public class Ui {
       return;
     }
     printer.printEnterExerciseTypeMessage();
-    exerciseType = inputReader.next();
+    String exerciseType = inputReader.next();
 
     try {
       register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
@@ -240,22 +251,23 @@ public class Ui {
     }
   }
 
+
   private void printDiaryEntryFromDate(Scanner inputReader) {
-    try{
-    printer.printEnterDayMessage();
-    int day = inputReader.nextInt();
-    printer.printEnterMonthMessage();
-    int month = inputReader.nextInt();
-    printer.printEnterYearMessage();
-    int year = inputReader.nextInt();
-    LocalDate date = LocalDate.of(year, month, day);
-    printer.printDiaryEntryFromDate(date, register);
+    try {
+      printer.printEnterDayMessage();
+      int day = inputReader.nextInt();
+      printer.printEnterMonthMessage();
+      int month = inputReader.nextInt();
+      printer.printEnterYearMessage();
+      int year = inputReader.nextInt();
+      LocalDate date = LocalDate.of(year, month, day);
+      printer.printDiaryEntryFromDate(date, register);
 
     } catch (InputMismatchException e) {
       System.out.println("Date must be an number - diary entry could not be printed!");
       inputReader.nextLine();
     } catch (DateTimeException e) {
-        System.out.println("Invalid date entered - diary entry could not be printed!");
+      System.out.println("Invalid date entered - diary entry could not be printed!");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
