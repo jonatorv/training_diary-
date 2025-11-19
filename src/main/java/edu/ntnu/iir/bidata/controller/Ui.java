@@ -47,123 +47,128 @@ public class Ui {
 
     while (running) {
       int mainMenuChoice = 0;
+      Boolean invalidMainMenu = false;
       try {
         mainMenuChoice = inputReader.nextInt();
       } catch (InputMismatchException e) {
         System.out.println(
             "Invalid input - please enter a number corresponding to the menu options!");
         inputReader.nextLine();
+        invalidMainMenu = true;
       }
 
-      if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
+      if (invalidMainMenu || mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
-      }
+      } else {
 
-      MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
-      switch (mainMenu) {
-        // -----------------------------------------------------------------------------------------
-        case ENTRY_OVERVIEW:
-          boolean runningOverviewMenu = true;
-          while (runningOverviewMenu) {
-            printer.printChooseOperationMessage();
-            int overviewMenuChoice = 0;
-            Boolean invalid = false;
-            try {
-              overviewMenuChoice = inputReader.nextInt();
-            } catch (InputMismatchException e) {
-              System.out.println(
-                  "Invalid input - please enter a number corresponding to the menu options!");
-              inputReader.nextLine();
-              invalid = true;
-            }
+        MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
+        switch (mainMenu) {
+          // -----------------------------------------------------------------------------------------
+          case ENTRY_OVERVIEW:
+            boolean runningOverviewMenu = true;
+            while (runningOverviewMenu) {
+              printer.printChooseOperationMessage();
+              int overviewMenuChoice = 0;
+              Boolean invalidRunningOverviewMenu = false;
+              try {
+                overviewMenuChoice = inputReader.nextInt();
+              } catch (InputMismatchException e) {
+                System.out.println(
+                    "Invalid input - please enter a number corresponding to the menu options!");
+                inputReader.nextLine();
+                invalidRunningOverviewMenu = true;
+              }
 
-            if (invalid
-                || overviewMenuChoice < 0
-                || overviewMenuChoice >= EntryOverview.values().length) {
-              printer.printInvalidOptionMessage();
-            } else {
-              EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
+              if (invalidRunningOverviewMenu
+                  || overviewMenuChoice < 0
+                  || overviewMenuChoice >= EntryOverview.values().length) {
+                printer.printInvalidOptionMessage();
+              } else {
+                EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
-              switch (entryOverview) {
-                case PRINT_ALL_DIARY_ENTRIES:
-                  printer.printAllDiaryEntries(register);
-                  break;
+                switch (entryOverview) {
+                  case PRINT_ALL_DIARY_ENTRIES:
+                    printer.printAllDiaryEntries(register);
+                    break;
 
-                case PRINT_DIARY_ENTRIES_FROM_DATE:
-                  printDiaryEntryFromDate(inputReader);
-                  break;
+                  case PRINT_DIARY_ENTRIES_FROM_DATE:
+                    printDiaryEntryFromDate(inputReader);
+                    break;
 
-                case PRINT_DIARY_ENTRIES_SORTED_BY_DATE:
-                  printer.printDiaryEntriesSortedByDate(register);
-                  break;
+                  case PRINT_DIARY_ENTRIES_SORTED_BY_DATE:
+                    printer.printDiaryEntriesSortedByDate(register);
+                    break;
 
-                case EXIT:
-                  runningOverviewMenu = false;
-                  printer.printWelcomeMessage();
-                  break;
+                  case EXIT:
+                    runningOverviewMenu = false;
+                    printer.printWelcomeMessage();
+                    break;
 
-                default:
-                  printer.printInvalidOptionMessage();
-                  break;
+                  default:
+                    printer.printInvalidOptionMessage();
+                    break;
+                }
               }
             }
-          }
-          break;
-        // ---------------------------------------------------------------------------------------
-        case ENTRY_ADMINISTRATIONS:
-          boolean runningAdministrationMenu = true;
+            break;
+          // ---------------------------------------------------------------------------------------
+          case ENTRY_ADMINISTRATIONS:
+            boolean runningAdministrationMenu = true;
 
-          while (runningAdministrationMenu) {
-            printer.printAdministrationMenuMessage();
-            int administrationMenuChoice = 0;
-            try {
-              administrationMenuChoice = inputReader.nextInt();
-            } catch (InputMismatchException e) {
-              System.out.println(
-                  "Invalid input - please enter a number corresponding to the menu options!");
-              inputReader.nextLine();
-            }
+            while (runningAdministrationMenu) {
+              printer.printAdministrationMenuMessage();
+              int administrationMenuChoice = 0;
+              boolean invalidAdministrationMenu = false;
+              try {
+                administrationMenuChoice = inputReader.nextInt();
+              } catch (InputMismatchException e) {
+                System.out.println(
+                    "Invalid input - please enter a number corresponding to the menu options!");
+                inputReader.nextLine();
+                invalidAdministrationMenu = true;
+              }
 
-            if (administrationMenuChoice < 0
-                || administrationMenuChoice >= EntryAdministrations.values().length) {
-              printer.printInvalidOptionMessage();
-              continue;
-            }
-            EntryAdministrations entryAdministrations =
-                EntryAdministrations.values()[administrationMenuChoice];
-
-            switch (entryAdministrations) {
-              case CREATE_AND_ADD_DIARY_ENTRY:
-                createAndAddDiaryEntry(inputReader);
-                break;
-
-              case CREATE_AND_ADD_DIARY_ENTRY_CUSTOM_DATE:
-                createAndAddDiaryEntryCustomDate(inputReader);
-                break;
-
-              case DELETE_DIARY_ENTRY_FROM_DATE:
-                deleteDiaryEntryFromDate(inputReader);
-                break;
-
-              case EXIT:
-                runningAdministrationMenu = false;
-                printer.printWelcomeMessage();
-                break;
-
-              default:
+              if (invalidAdministrationMenu || administrationMenuChoice < 0
+                  || administrationMenuChoice >= EntryAdministrations.values().length) {
                 printer.printInvalidOptionMessage();
-                break;
+              } else {
+                EntryAdministrations entryAdministrations =
+                    EntryAdministrations.values()[administrationMenuChoice];
+
+                switch (entryAdministrations) {
+                  case CREATE_AND_ADD_DIARY_ENTRY:
+                    createAndAddDiaryEntry(inputReader);
+                    break;
+
+                  case CREATE_AND_ADD_DIARY_ENTRY_CUSTOM_DATE:
+                    createAndAddDiaryEntryCustomDate(inputReader);
+                    break;
+
+                  case DELETE_DIARY_ENTRY_FROM_DATE:
+                    deleteDiaryEntryFromDate(inputReader);
+                    break;
+
+                  case EXIT:
+                    runningAdministrationMenu = false;
+                    printer.printWelcomeMessage();
+                    break;
+
+                  default:
+                    printer.printInvalidOptionMessage();
+                    break;
+                }
+              }
             }
-          }
-          break;
+            break;
 
-        case EXIT:
-          running = false;
-          break;
+          case EXIT:
+            running = false;
+            break;
 
-        default:
-          printer.printInvalidOptionMessage();
-          break;
+          default:
+            printer.printInvalidOptionMessage();
+            break;
+        }
       }
     }
   }
