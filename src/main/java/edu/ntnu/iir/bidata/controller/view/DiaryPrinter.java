@@ -149,7 +149,7 @@ public class DiaryPrinter {
   }
 
   public void printInvalidOptionMessage() {
-    System.out.println("Invalid option! Please try again.");
+    System.out.println("Invalid Number! Please enter a number corresponding to the menu options!");
     System.out.println();
   }
 

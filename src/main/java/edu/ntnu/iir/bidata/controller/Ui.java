@@ -57,8 +57,10 @@ public class Ui {
         invalidMainMenu = true;
       }
 
-      if (invalidMainMenu || mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
+      if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
+      } else if (invalidMainMenu) {
+
       } else {
 
         MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
@@ -79,10 +81,10 @@ public class Ui {
                 invalidRunningOverviewMenu = true;
               }
 
-              if (invalidRunningOverviewMenu
-                  || overviewMenuChoice < 0
-                  || overviewMenuChoice >= EntryOverview.values().length) {
+              if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
                 printer.printInvalidOptionMessage();
+              } else if (invalidRunningOverviewMenu) {
+
               } else {
                 EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
@@ -128,9 +130,11 @@ public class Ui {
                 invalidAdministrationMenu = true;
               }
 
-              if (invalidAdministrationMenu || administrationMenuChoice < 0
+              if (administrationMenuChoice < 0
                   || administrationMenuChoice >= EntryAdministrations.values().length) {
                 printer.printInvalidOptionMessage();
+              } else if (invalidAdministrationMenu) {
+
               } else {
                 EntryAdministrations entryAdministrations =
                     EntryAdministrations.values()[administrationMenuChoice];
