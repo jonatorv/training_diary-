@@ -47,7 +47,7 @@ public class Ui {
 
     while (running) {
       int mainMenuChoice = 0;
-      Boolean invalidMainMenu = false;
+      boolean invalidMainMenu = false;
       try {
         mainMenuChoice = inputReader.nextInt();
       } catch (InputMismatchException e) {
@@ -65,13 +65,13 @@ public class Ui {
 
         MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
         switch (mainMenu) {
-          // -----------------------------------------------------------------------------------------
+          // ---------------------------------------------------------------------------------------
           case ENTRY_OVERVIEW:
             boolean runningOverviewMenu = true;
             while (runningOverviewMenu) {
               printer.printChooseOperationMessage();
               int overviewMenuChoice = 0;
-              Boolean invalidRunningOverviewMenu = false;
+              boolean invalidRunningOverviewMenu = false;
               try {
                 overviewMenuChoice = inputReader.nextInt();
               } catch (InputMismatchException e) {
@@ -189,12 +189,21 @@ public class Ui {
       printer.printEnterYearMessage();
       year = inputReader.nextInt();
       LocalDate date = LocalDate.of(year, month, day);
+      int oldSize = register.getDiaryEntries().size();
       register.deleteDiaryEntryFromDate(date);
+      int newSize = register.getDiaryEntries().size();
+
+      if(newSize < oldSize){
+        printer.deleteDiaryEntryTrueMessage();
+      } else {
+        printer.deleteDiaryEntryFalseMessage();
+      }
+
     } catch (InputMismatchException e) {
       System.out.println("Date must be an number - diary entry could not be deleted!");
       inputReader.nextLine();
     } catch (DateTimeException e) {
-      System.out.println("Invalid date entered- diary entry could not be deleted!");
+      System.out.println("Invalid date entered - diary entry could not be deleted!");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }

@@ -44,17 +44,14 @@ public class DiaryRegister {
   }
 
   /** Deletes all diary entries from a specific date. */
-  public boolean deleteDiaryEntryFromDate(LocalDate date) {
+  public void deleteDiaryEntryFromDate(LocalDate date) {
     Iterator<DiaryEntry> iterator = diaryEntries.iterator();
-    boolean deleted = false;
     while (iterator.hasNext()) {
       DiaryEntry entry = iterator.next();
       if (entry.getDate().isEqual(date)) {
         iterator.remove();
-        deleted = true;
       }
     }
-    return deleted;
   }
 
   /** Finds all diary entries on a specific date. */

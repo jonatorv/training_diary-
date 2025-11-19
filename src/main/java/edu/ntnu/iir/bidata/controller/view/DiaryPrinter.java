@@ -39,12 +39,12 @@ public class DiaryPrinter {
   public void printDiaryEntryFromDate(LocalDate date, DiaryRegister register) {
     if (date.isAfter(LocalDate.now())) {
       System.out.println("Sorry! You cannot search for entries in the future.");
-        return;
+      return;
     }
 
     try {
       List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
-      if (entries.isEmpty()){
+      if (entries.isEmpty()) {
         System.out.println("No diary entries found on " + date);
         return;
       }
@@ -60,7 +60,7 @@ public class DiaryPrinter {
   public void printDiaryEntriesSortedByDate(DiaryRegister register) {
     try {
       List<DiaryEntry> entries = register.getSortedDiaryEntriesByDate();
-      if (entries.isEmpty()){
+      if (entries.isEmpty()) {
         System.out.println("No diary entries found");
         return;
       }
@@ -75,37 +75,40 @@ public class DiaryPrinter {
 
   /** Prints a welcome message to the console. */
   public void printWelcomeMessage() {
+    System.out.println(
+        "--------------------------------------------------------------------------->");
     System.out.println("Welcome to your personal training diary!");
     System.out.println("Choose one of the options below:");
     System.out.println("0: Open the overview menu");
     System.out.println("1: Open the entry administration menu");
     System.out.println("2: Exit the application");
-    System.out.println("--------------------------------------------------------------------------->");
-
-
-
-
+    System.out.println(
+        "--------------------------------------------------------------------------->");
   }
 
   /** Prints a choose operation message to the console. */
   public void printChooseOperationMessage() {
-    System.out.println("--------------------------------------------------------------------------->");
+    System.out.println(
+        "--------------------------------------------------------------------------->");
     System.out.println("Choose an operation:");
     System.out.println("0: Show all diary entries");
     System.out.println("1: Show diary entries from a specific date");
     System.out.println("2: Show diary entries sorted by date (newest first)");
     System.out.println("3: Return to the main menu");
-    System.out.println("--------------------------------------------------------------------------->");
+    System.out.println(
+        "--------------------------------------------------------------------------->");
   }
 
-  public void printAdministrationMenuMessage(){
+  public void printAdministrationMenuMessage() {
+    System.out.println(
+        "--------------------------------------------------------------------------->");
     System.out.println("Choose an operation from the entry administration menu:");
     System.out.println("0: Add a new diary entry");
     System.out.println("1: Add a new diary entry with custom date");
     System.out.println("2: Delete a diary entry");
     System.out.println("3: Return to the main menu");
-    System.out.println("--------------------------------------------------------------------------->");
-
+    System.out.println(
+        "--------------------------------------------------------------------------->");
   }
 
   /** Prints a enter year message to the console. */
@@ -124,27 +127,27 @@ public class DiaryPrinter {
   }
 
   /** Prints a enter title message to the console. */
-  public void printEnterTitleMessage(){
+  public void printEnterTitleMessage() {
     System.out.println("Please enter the title of the trainingsession: ");
   }
 
   /** Prints a enter author message to the console. */
-  public void printEnterAuthorMessage(){
+  public void printEnterAuthorMessage() {
     System.out.println("Enter your name: ");
   }
 
   /** Prints a enter content message to the console. */
-  public void printEnterContentMessage(){
+  public void printEnterContentMessage() {
     System.out.println("Write a short description or reflection about the session: ");
   }
 
   /** Prints a enter duration message to the console. */
-  public void printEnterDurationMessage(){
+  public void printEnterDurationMessage() {
     System.out.println("How long did the session last (in minutes)?");
   }
 
   /** Prints a enter exercise type message to the console. */
-  public void printEnterExerciseTypeMessage(){
+  public void printEnterExerciseTypeMessage() {
     System.out.println("Enter the type of exercise (for example running, cycling or strength)");
   }
 
@@ -153,7 +156,13 @@ public class DiaryPrinter {
     System.out.println();
   }
 
-  public void deleteDiaryEntryMessage() {
-    System.out.println("Diary entry deleted successfully.");
+  /** Prints a success message to the console. */
+  public void deleteDiaryEntryTrueMessage() {
+    System.out.println("Diary entry deleted successfully!");
+  }
+
+  /** Prints a failure message to the console. */
+  public void deleteDiaryEntryFalseMessage() {
+    System.out.println("No diary entry found on the specified date!");
   }
 }
