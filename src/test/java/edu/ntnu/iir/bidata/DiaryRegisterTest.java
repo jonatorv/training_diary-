@@ -84,4 +84,16 @@ class DiaryRegisterTest {
       diaryRegister.createAndAddDiaryEntryCustomDate("Future Workout", "Charlie", "10km", 45, "Running", date);
     });
   }
+
+  @Test
+  void testDeleteDiaryEntryFromDateWithNoEntries(){
+    LocalDate FalseDate = LocalDate.of(2025, 1, 15);
+    LocalDate trueDate = LocalDate.of(2025, 1, 10);
+    diaryRegister.createAndAddDiaryEntryCustomDate("Morning run", "Martin", "21km run", 160, "Running", trueDate);
+
+    List<DiaryEntry> entriesBefore = diaryRegister.getDiaryEntries();
+    diaryRegister.deleteDiaryEntryFromDate(FalseDate);
+    List<DiaryEntry> entriesAfter = diaryRegister.getDiaryEntries();
+    Assertions.assertEquals(entriesBefore, entriesAfter);
+  }
 }
