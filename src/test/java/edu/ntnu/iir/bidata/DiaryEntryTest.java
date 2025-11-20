@@ -5,29 +5,29 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DiaryEntryTest {
+class DiaryEntryTest {
 
   private DiaryEntry diaryentry;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     diaryentry = new DiaryEntry("Langkøyring", "Martin", "Intervalløkt 17x13", 1, "Løping");
   }
 
-  // Positive tests
+  // Positive tests -------------------------------------------------------------------
   @Test
-  public void testMinimumValidDuration() {
+  void testMinimumValidDuration() {
     Assertions.assertEquals(1, diaryentry.getDuration());
   }
 
   @Test
-  public void testMaximumValidDuration() {
+  void testMaximumValidDuration() {
     diaryentry.setMinDuration(1440);
     Assertions.assertEquals(1440, diaryentry.getDuration());
   }
 
   @Test
-  public void testConstructorSetsAllFieldCorrectly() {
+  void testConstructorSetsAllFieldCorrectly() {
     Assertions.assertEquals("Langkøyring", diaryentry.getTitle());
     Assertions.assertEquals("Martin", diaryentry.getAuthor());
     Assertions.assertEquals("Intervalløkt 17x13", diaryentry.getContentOfSession());
@@ -35,13 +35,13 @@ public class DiaryEntryTest {
   }
 
   @Test
-  public void testConstructorSets() {
+  void testConstructorSets() {
     Assertions.assertEquals(1, diaryentry.getDuration());
   }
 
-  // Negative tests
+  // Negative tests -------------------------------------------------------------------
   @Test
-  public void testNegativeDuration() {
+  void testNegativeDuration() {
     Assertions.assertThrows(
         IllegalArgumentException.class,
         () -> {
@@ -50,7 +50,7 @@ public class DiaryEntryTest {
   }
 
   @Test
-  public void testZeroDuration() {
+  void testZeroDuration() {
     Assertions.assertThrows(
         IllegalArgumentException.class,
         () -> {

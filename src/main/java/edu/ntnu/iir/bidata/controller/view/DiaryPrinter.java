@@ -57,6 +57,7 @@ public class DiaryPrinter {
     }
   }
 
+  /** Prints all diary entries sorted by date (newest first) to the console. */
   public void printDiaryEntriesSortedByDate(DiaryRegister register) {
     try {
       List<DiaryEntry> entries = register.getSortedDiaryEntriesByDate();
@@ -99,6 +100,7 @@ public class DiaryPrinter {
         "--------------------------------------------------------------------------->");
   }
 
+  /** Prints a administration menu message to the console. */
   public void printAdministrationMenuMessage() {
     System.out.println(
         "--------------------------------------------------------------------------->");
@@ -151,6 +153,7 @@ public class DiaryPrinter {
     System.out.println("Enter the type of exercise (for example running, cycling or strength)");
   }
 
+  /** Prints an invalid option message to the console. */
   public void printInvalidOptionMessage() {
     System.out.println("Invalid Number! Please enter a number corresponding to the menu options!");
     System.out.println();

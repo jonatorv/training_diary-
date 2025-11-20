@@ -177,6 +177,11 @@ public class Ui {
     }
   }
 
+  /**
+   * Deletes a diary entry from a date based on user input.
+   *
+   * @param inputReader Scanner for user input.
+   */
   private void deleteDiaryEntryFromDate(Scanner inputReader) {
     int day;
     int year;
@@ -193,7 +198,7 @@ public class Ui {
       register.deleteDiaryEntryFromDate(date);
       int newSize = register.getDiaryEntries().size();
 
-      if(newSize < oldSize){
+      if (newSize < oldSize) {
         printer.deleteDiaryEntryTrueMessage();
       } else {
         printer.deleteDiaryEntryFalseMessage();
@@ -209,6 +214,11 @@ public class Ui {
     }
   }
 
+  /**
+   * Creates and adds a diary entry with custom date based on user input.
+   *
+   * @param inputReader Scanner for user input.
+   */
   private void createAndAddDiaryEntryCustomDate(Scanner inputReader) {
     inputReader.nextLine();
     printer.printEnterTitleMessage();
@@ -248,6 +258,11 @@ public class Ui {
     }
   }
 
+  /**
+   * Creates and adds a diary entry with current date based on user input.
+   *
+   * @param inputReader Scanner for user input.
+   */
   private void createAndAddDiaryEntry(Scanner inputReader) {
     inputReader.nextLine();
     printer.printEnterTitleMessage();
@@ -275,6 +290,11 @@ public class Ui {
     }
   }
 
+  /**
+   * Print diary entries for the date entered by the user.
+   *
+   * @param inputReader Scanner for user input.
+   */
   private void printDiaryEntryFromDate(Scanner inputReader) {
     try {
       printer.printEnterDayMessage();
