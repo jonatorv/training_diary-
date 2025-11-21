@@ -7,36 +7,36 @@ import org.junit.jupiter.api.Test;
 
 class DiaryEntryTest {
 
-  private DiaryEntry diaryentry;
+  private DiaryEntry diaryEntry;
 
   @BeforeEach
   void setUp() {
-    diaryentry = new DiaryEntry("Langkøyring", "Martin", "Intervalløkt 17x13", 1, "Løping");
+    diaryEntry = new DiaryEntry("Langkøyring", "Martin", "Intervalløkt 17x13", 1, "Løping");
   }
 
   // Positive tests -------------------------------------------------------------------
   @Test
   void testMinimumValidDuration() {
-    Assertions.assertEquals(1, diaryentry.getDuration());
+    Assertions.assertEquals(1, diaryEntry.getDuration());
   }
 
   @Test
   void testMaximumValidDuration() {
-    diaryentry.setMinDuration(1440);
-    Assertions.assertEquals(1440, diaryentry.getDuration());
+    diaryEntry.setMinDuration(1440);
+    Assertions.assertEquals(1440, diaryEntry.getDuration());
   }
 
   @Test
   void testConstructorSetsAllFieldCorrectly() {
-    Assertions.assertEquals("Langkøyring", diaryentry.getTitle());
-    Assertions.assertEquals("Martin", diaryentry.getAuthor());
-    Assertions.assertEquals("Intervalløkt 17x13", diaryentry.getContentOfSession());
-    Assertions.assertEquals("Løping", diaryentry.getExerciseType());
+    Assertions.assertEquals("Langkøyring", diaryEntry.getTitle());
+    Assertions.assertEquals("Martin", diaryEntry.getAuthor());
+    Assertions.assertEquals("Intervalløkt 17x13", diaryEntry.getContentOfSession());
+    Assertions.assertEquals("Løping", diaryEntry.getExerciseType());
   }
 
   @Test
   void testConstructorSets() {
-    Assertions.assertEquals(1, diaryentry.getDuration());
+    Assertions.assertEquals(1, diaryEntry.getDuration());
   }
 
   // Negative tests -------------------------------------------------------------------
@@ -45,7 +45,7 @@ class DiaryEntryTest {
     Assertions.assertThrows(
         IllegalArgumentException.class,
         () -> {
-          diaryentry.setMinDuration(-1);
+          diaryEntry.setMinDuration(-1);
         });
   }
 
@@ -54,7 +54,7 @@ class DiaryEntryTest {
     Assertions.assertThrows(
         IllegalArgumentException.class,
         () -> {
-          diaryentry.setMinDuration(0);
+          diaryEntry.setMinDuration(0);
         });
   }
 }

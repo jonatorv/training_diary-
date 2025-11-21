@@ -7,6 +7,7 @@ import java.util.List;
 
 /** Prints diary entries to the console. The class is responsible for formatting the output. */
 public class DiaryPrinter {
+  private static final String SEPERATOR = "------------------------------------------------------>";
 
   /** Prints the diary entry information to the console. */
   public void printDiaryEntry(DiaryEntry entry) {
@@ -76,41 +77,35 @@ public class DiaryPrinter {
 
   /** Prints a welcome message to the console. */
   public void printWelcomeMessage() {
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
     System.out.println("Welcome to your personal training diary!");
     System.out.println("Choose one of the options below:");
     System.out.println("0: Open the overview menu");
     System.out.println("1: Open the entry administration menu");
     System.out.println("2: Exit the application");
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
   }
 
   /** Prints a choose operation message to the console. */
   public void printChooseOperationMessage() {
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
     System.out.println("Choose an operation:");
     System.out.println("0: Show all diary entries");
     System.out.println("1: Show diary entries from a specific date");
     System.out.println("2: Show diary entries sorted by date (newest first)");
     System.out.println("3: Return to the main menu");
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
   }
 
   /** Prints a administration menu message to the console. */
   public void printAdministrationMenuMessage() {
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
     System.out.println("Choose an operation from the entry administration menu:");
     System.out.println("0: Add a new diary entry");
     System.out.println("1: Add a new diary entry with custom date");
     System.out.println("2: Delete a diary entry");
     System.out.println("3: Return to the main menu");
-    System.out.println(
-        "--------------------------------------------------------------------------->");
+    System.out.println(SEPERATOR);
   }
 
   /** Prints a enter year message to the console. */

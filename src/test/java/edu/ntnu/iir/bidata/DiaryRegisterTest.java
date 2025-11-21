@@ -26,7 +26,7 @@ class DiaryRegisterTest {
   }
 
   @Test
-  void testCreateAndAddDiaryEntryWithCustomDate(){
+  void testCreateAndAddDiaryEntryWithCustomDate() {
     LocalDate date = LocalDate.of(2023, 1, 15);
     diaryRegister.createAndAddDiaryEntryCustomDate("Evening Cycle", "Bob", "20km cycling", 60, "Cycling", date);
 
@@ -77,7 +77,7 @@ class DiaryRegisterTest {
 
   // Negative tests -------------------------------------------------------------------
   @Test
-  void TestCreateAndAddDiaryEntryWithFutureDate(){
+  void testCreateAndAddDiaryEntryWithFutureDate() {
     LocalDate date = LocalDate.of(2050, 1, 15);
 
     Assertions.assertThrows(IllegalArgumentException.class, () -> {
