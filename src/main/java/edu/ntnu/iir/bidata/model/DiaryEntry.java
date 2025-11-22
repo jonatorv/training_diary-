@@ -3,11 +3,18 @@ package edu.ntnu.iir.bidata.model;
 import java.time.LocalDate;
 
 /**
- * Diary entry represents a single trainingdiary entry.
+ * Represents a single entry in the training diary.
  *
- * <p>Each entry stores information about a training session: - A unique ID - Title of the session -
- * Information/content of the session - Duration of the session - Specific exercise (running,
- * cycling, strength)
+ * <p>Each diary entry stores information about a training session, including: </p>
+ * <ul>
+ *   <li>A unique ID</li>
+ *   <li>The author of the session</li>
+ *   <li>The title of the session</li>
+ *   <li>The content of the session</li>
+ *   <li>The duration of the session in minutes</li>
+ *   <li>The exercise type of the session</li>
+ *   <li>The date of the session</li>
+ * </ul>
  */
 public class DiaryEntry {
   private static int nextId = 0;
@@ -20,15 +27,16 @@ public class DiaryEntry {
   private LocalDate date;
 
   /**
-   * Creates a new DiaryEntry with current date.
+   * Creates a new DiaryEntry with the current date.
    *
-   * <p>This constructor also assigns a unique ID to every entry and the current date and time
+   * <p>The constructor assigns a unique ID to the entry and validates all
+   * fields before setting them. Any invalid values will result in an IllegalArgumentException</p>
    *
-   * @param title title of the training session.
-   * @param author name of the author of the training session.
-   * @param content notes about the training session.
-   * @param duration duration of the training session.
-   * @param exerciseType type of exercise.
+   * @param title         title of the training session.
+   * @param author        name of the author of the training session.
+   * @param content       notes about the training session.
+   * @param duration      duration of the training session.
+   * @param exerciseType  type of exercise.
    */
   public DiaryEntry(
       String title, String author, String content, int duration, String exerciseType) {
@@ -43,9 +51,10 @@ public class DiaryEntry {
   }
 
   /**
-   * Creates a new DiaryEntry with custom date.
+   * Creates a new DiaryEntry with the custom date.
    *
-   * <p>In addition, the constructor also assigns a unique ID to every entry.
+   * <p>The constructor assigns a unique ID to the entry and validates all
+   * fields before setting them. Any invalid values will result in an IllegalArgumentException</p>
    *
    * @param title title of the training session.
    * @param author name of the author of the training session.
@@ -133,6 +142,7 @@ public class DiaryEntry {
    * Sets a new title for the entry.
    *
    * @param title the new title to set.
+   * @throws IllegalArgumentException if the title is null or empty.
    */
   public void setNewTitle(String title) {
     if (title == null || title.isEmpty()) {
@@ -146,6 +156,7 @@ public class DiaryEntry {
    * Sets a new content for the entry.
    *
    * @param content the new content to set.
+   * @throws IllegalArgumentException if the content is null or empty.
    */
   public void setNewContent(String content) {
     if (content == null || content.isEmpty()) {
@@ -159,6 +170,7 @@ public class DiaryEntry {
    * Sets a new author for the entry.
    *
    * @param author the new author to set.
+   * @throws IllegalArgumentException if the author is null or empty.
    */
   public void setNewAuthor(String author) {
     if (author == null || author.isEmpty()) {
@@ -172,6 +184,7 @@ public class DiaryEntry {
    * Sets a new exercise type for the entry.
    *
    * @param exercise the new exercise type to set.
+   * @throws IllegalArgumentException if the exercise type is null or empty.
    */
   public void setNewExerciseType(String exercise) {
     if (exercise == null || exercise.isEmpty()) {
@@ -183,10 +196,12 @@ public class DiaryEntry {
   }
 
   /**
-   * Sets a duratoin for the entry. The duration must be greater than 0 and less than 1440. Else it
-   * will throw an exception.
+   * Sets a duration for the entry.
+   *
+   * <p>The duration must be between 1 and 1440 minutes (24 hours). </p>
    *
    * @param duration the new duration to set.
+   * @throws IllegalArgumentException if the duration is outside the valid range.
    */
   public void setMinDuration(int duration) {
     if (duration <= 0) {
@@ -199,9 +214,12 @@ public class DiaryEntry {
   }
 
   /**
-   * Sets a new date for the entry. Date cannot be in the future.
+   * Sets a new date for the entry.
+   *
+   * <p>The date cannot be in the future.</p>
    *
    * @param date the new date to set.
+   * @throws IllegalArgumentException if the date is in the future.
    */
   public void setDate(LocalDate date) {
     if (date.isAfter(LocalDate.now())) {
