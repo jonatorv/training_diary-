@@ -7,17 +7,20 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Diary register is a collection of diary entries. It is responsible for storing and managing
- * DiaryEntry objects.
- * - The class is responsible for creating and managing the diary entries.
- * - The class is responsible for sorting the diary entries by date.
- * - The class is responsible for searching for diary entries on a specific date.
- * - The class is responsible for deleting diary entries from a specific date.
+ * Represents a register that stores and manages DiaryEntry objects.
+ *
+ * <p>It is responsible for storing and managing DiaryEntry objects, including:</p>
+ * <ul>
+ *   <li>Creating and managing the diary entries.</li>
+ *   <li>Sorting the diary entries by date</li>
+ *   <li>Searching for diary entries on a specific date.</li>
+ *   <li>Deleting diary entries from a specific date.</li>
+ * </ul>
  */
 public class DiaryRegister {
   private ArrayList<DiaryEntry> diaryEntries;
 
-  /** Creates a new diary register. */
+  /** The constructor creates a new, empty diary register. */
   public DiaryRegister() {
     diaryEntries = new ArrayList<>();
   }
@@ -30,6 +33,7 @@ public class DiaryRegister {
    * @param content the content of the entry.
    * @param duration the duration of the entry.
    * @param exerciseType the exercise type of the entry.
+   * @throws IllegalArgumentException if any field is invalid.
    */
   public void createAndAddDiaryEntry(
       String title, String author, String content, int duration, String exerciseType) {
@@ -46,6 +50,7 @@ public class DiaryRegister {
    * @param content the content of the entry.
    * @param duration the duration of the entry.
    * @param exerciseType the exercise type of the entry.
+   * @throws IllegalArgumentException if any field is invalid or the date is in the future.
    */
   public void createAndAddDiaryEntryCustomDate(
       String title,
@@ -58,13 +63,16 @@ public class DiaryRegister {
     diaryEntries.add(newEntry);
   }
 
-  /** Returns a copy of the diary entries in a list. */
+  /** Returns a copy of all diary entries stored in the register.
+   *
+   * @return a list containing copies of all diary entries.
+   * */
   public List<DiaryEntry> getDiaryEntries() {
     return new ArrayList<>(diaryEntries);
   }
 
   /**
-   * Deletes all diary entries from a specific date.
+   * Deletes all diary entries that match the specific date.
    *
    * @param date the date to delete entries from.
    */
@@ -79,10 +87,11 @@ public class DiaryRegister {
   }
 
   /**
-   * Finds all diary entries on a specific date.
+   * Finds all diary entries stored on the given date.
    *
    * @param date the date to search entries for.
    * @return a list of diary entries on the specified date.
+   * @throws IllegalArgumentException if there are no entries on the specified date.
    */
   public List<DiaryEntry> findDiaryEntriesByDate(LocalDate date) {
     ArrayList<DiaryEntry> result = new ArrayList<>();
@@ -99,7 +108,12 @@ public class DiaryRegister {
     }
   }
 
-  /** Sorts the diary entries by date. The newest entry first. */
+  /**
+   * Returns all diary entries sorted by date, with the newest entry first.
+   *
+   * @return a list of sorted diary entries.
+   * @throws IllegalArgumentException if there are no entries in the register.
+   */
   public List<DiaryEntry> getSortedDiaryEntriesByDate() {
     ArrayList<DiaryEntry> sortedList = new ArrayList<>(diaryEntries);
     sortedList.sort(Comparator.comparing(DiaryEntry::getDate).reversed());
