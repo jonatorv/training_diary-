@@ -61,6 +61,8 @@ public class Ui {
     boolean running = true;
 
     while (running) {
+      printer.printNumberOfEntries(register);
+      printer.printNumberOfEntriesFromDate(LocalDate.now(), register);
       int mainMenuChoice = 0;
       boolean invalidMainMenu = false;
       try {

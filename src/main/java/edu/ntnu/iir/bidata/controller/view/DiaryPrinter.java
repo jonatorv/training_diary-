@@ -75,6 +75,34 @@ public class DiaryPrinter {
     }
   }
 
+  /**
+   * Prints the total number of diary entries in the register.
+   *
+   * @param register the diary register containing entries.
+   */
+  public void printNumberOfEntries(DiaryRegister register){
+    int index = 0;
+    for (DiaryEntry entry : register.getDiaryEntries()) {
+      index++;
+    }
+    System.out.println("Number of entries: " + index);
+  }
+
+  /**
+   * Prints the number of diary entries from a specific date.
+   *
+   * @param date      the date to search for.
+   * @param register  the diary register to retrieve entries from.
+   */
+  public void printNumberOfEntriesFromDate(LocalDate date, DiaryRegister register){
+    try{
+      List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
+      System.out.println("Number of entries on " + date + ": " + entries.size());
+    } catch (IllegalArgumentException e) {                                                          
+      System.out.println("Number of entries on " + date + ": 0");
+    }
+  }
+
   /** Prints diary entries sorted by date, newest first.
    *
    * @param register the diary register containing entries.

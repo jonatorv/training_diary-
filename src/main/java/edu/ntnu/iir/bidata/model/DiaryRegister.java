@@ -18,7 +18,7 @@ import java.util.List;
  * </ul>
  */
 public class DiaryRegister {
-  private ArrayList<DiaryEntry> diaryEntries;
+  private final ArrayList<DiaryEntry> diaryEntries;
 
   /** The constructor creates a new, empty diary register. */
   public DiaryRegister() {
@@ -107,6 +107,8 @@ public class DiaryRegister {
       return result;
     }
   }
+
+
 
   /**
    * Returns all diary entries sorted by date, with the newest entry first.
