@@ -14,21 +14,20 @@ import java.util.Scanner;
  * Provides a console-based user interface for the application.
  *
  * <p>This class is responsible for displaying menus, validating choices, delegating tasks to the
- * DiaryRegister, and uses the DiaryPrinter to generate output. </p>
+ * DiaryRegister, and uses the DiaryPrinter to generate output.
  */
 public class Ui {
   private DiaryRegister register;
   private DiaryPrinter printer;
 
-  private static final String INVALIDINPUT = "Invalid input - please enter a number "
-      + "corresponding to the menu options!";
+  private static final String INVALIDINPUT =
+      "Invalid input - please enter a number " + "corresponding to the menu options!";
 
-
-
-  /** Initializes the user interface by creating an instance of the DiaryRegister and DiaryPrinter.
+  /**
+   * Initializes the user interface by creating an instance of the DiaryRegister and DiaryPrinter.
    *
-   * <p>The method also initializes two diary entries in the register for demonstration purposes. </p>
-   * */
+   * <p>The method also initializes two diary entries in the register for demonstration purposes.
+   */
   public void init() {
     register = new DiaryRegister();
     printer = new DiaryPrinter();
@@ -48,13 +47,14 @@ public class Ui {
     }
   }
 
-  /** Starts the main application.
+  /**
+   * Starts the main application.
    *
    * <p>This method displays the welcome message and repeatedly reads the user´s main menu choice.
    * Based on the selected options, it delegates the user to either the overview menu or
    * administration menu. When the user selects the EXIT option, it will terminate the session and
-   * exit the program. </p>
-   * */
+   * exit the program.
+   */
   public void start() {
     printer.printWelcomeMessage();
     Scanner inputReader = new Scanner(System.in);
@@ -100,12 +100,13 @@ public class Ui {
     }
   }
 
-  /** Runs the overview menu loop and handles all the overview menu options.
+  /**
+   * Runs the overview menu loop and handles all the overview menu options.
    *
-   * <p>This method repeatedly displays the overview menu, reads the user´s choice,
-   * validates the input, and performs the corresponding action such as printing all the entries,
-   * printing all the entries from a specific date, or printing all the entries
-   * sorted by date (newest first). The loop terminates when the user selects the EXIT option. </p>
+   * <p>This method repeatedly displays the overview menu, reads the user´s choice, validates the
+   * input, and performs the corresponding action such as printing all the entries, printing all the
+   * entries from a specific date, or printing all the entries sorted by date (newest first). The
+   * loop terminates when the user selects the EXIT option.
    *
    * @param inputReader Scanner for user input.
    */
@@ -156,12 +157,13 @@ public class Ui {
     }
   }
 
-  /** Runs the administration menu loop and handles all the administration menu options.
+  /**
+   * Runs the administration menu loop and handles all the administration menu options.
    *
-   * <p>This method repeatedly displays the administration menu, reads the user´s choice,
-   * validates the input, and performs the corresponding action such as creating entries,
-   * creating entries with a custom date, or deleting entries from a specific date.
-   * The loop terminates when the user selects the EXIT option. </p>
+   * <p>This method repeatedly displays the administration menu, reads the user´s choice, validates
+   * the input, and performs the corresponding action such as creating entries, creating entries
+   * with a custom date, or deleting entries from a specific date. The loop terminates when the user
+   * selects the EXIT option.
    *
    * @param inputReader Scanner for user input.
    */
@@ -216,7 +218,11 @@ public class Ui {
   }
 
   /**
-   * Deletes a diary entry from a date based on user input.
+   * Deletes a diary entries from a specific date in the register, based on user input.
+   *
+   * <p>The method reads a day, month, and a year from the user and deletes all diary entries stored
+   * on that date. Invalid number input, invalid calender dates, or other illegal values are handled
+   * internally to prevent the program from crashing.
    *
    * @param inputReader Scanner for user input.
    */
@@ -253,7 +259,13 @@ public class Ui {
   }
 
   /**
-   * Creates and adds a diary entry with custom date based on user input.
+   * Creates and adds a diary entry to the register using a custom date, based on user input.
+   *
+   * <p>The method reads title, author, content, exerciseType, and at specific date (day, month, and
+   * year) from the user. If duration is not a valid number or is outside the allowed range (1-1440
+   * minutes), the input is discarded and the entry is not created. The method also handles invalid
+   * or empty input for all the other fields and prevents dates or invalid diary entries from being
+   * added to the register.
    *
    * @param inputReader Scanner for user input.
    */
@@ -297,7 +309,12 @@ public class Ui {
   }
 
   /**
-   * Creates and adds a diary entry with current date based on user input.
+   * Creates and adds a diary entry to the register using the current date, based on user input.
+   *
+   * <p>The method reads title, author, content, and exerciseType from the user. If duration is not
+   * a valid number or is outside the allowed range (1-1440 minutes), the input is discarded and the
+   * entry is not created. The method also handles invalid or empty input for the rest of the
+   * fields, ensuring that no invalid diary entry is added to the register.
    *
    * @param inputReader Scanner for user input.
    */
@@ -329,7 +346,11 @@ public class Ui {
   }
 
   /**
-   * Print diary entries for the date entered by the user.
+   * Print diary entries from a date specified by the user.
+   *
+   * <p>The method reads a day, month and a year from the user and displays all diary entries stored
+   * on that date. Any invalid number, invalid date values, or lookup errors in the register are
+   * handled internally.
    *
    * @param inputReader Scanner for user input.
    */
