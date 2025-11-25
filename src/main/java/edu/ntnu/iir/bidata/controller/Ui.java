@@ -305,9 +305,14 @@ public class Ui {
           title, author, content, duration, exerciseType, date);
     } catch (DateTimeException e) {
       System.out.println("Invalid date entered - diary entry could not be created!");
+      System.err.println("Failure for date entry");
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
     }
+    //catch (Exception e)
+    //{
+
+    //}
   }
 
   /**

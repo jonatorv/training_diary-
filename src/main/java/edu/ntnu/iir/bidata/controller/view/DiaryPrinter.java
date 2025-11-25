@@ -9,13 +9,14 @@ import java.util.List;
  * Handles all the console output related to displaying diary information.
  *
  * <p>This class is responsible for formatting and printing diary entries, menus, instructions,
- * error messages, and feedback messages to the user.</p>
- * */
+ * error messages, and feedback messages to the user.
+ */
 public class DiaryPrinter {
   /** Separator line used for formatting menu output. */
   private static final String SEPERATOR = "------------------------------------------------------>";
 
-  /** Prints all details of a single diary entry in a formatted layout.
+  /**
+   * Prints all details of a single diary entry in a formatted layout.
    *
    * @param entry DiaryEntry to print.
    */
@@ -33,7 +34,8 @@ public class DiaryPrinter {
     System.out.println();
   }
 
-  /** Prints all diary entries stored in the register.
+  /**
+   * Prints all diary entries stored in the register.
    *
    * @param register the diary register containing entries.
    */
@@ -51,8 +53,8 @@ public class DiaryPrinter {
   /**
    * Prints diary entries from a specific date.
    *
-   * @param date      the date to search for.
-   * @param register  the diary register to retrieve entries from.
+   * @param date the date to search for.
+   * @param register the diary register to retrieve entries from.
    */
   public void printDiaryEntryFromDate(LocalDate date, DiaryRegister register) {
     if (date.isAfter(LocalDate.now())) {
@@ -80,7 +82,7 @@ public class DiaryPrinter {
    *
    * @param register the diary register containing entries.
    */
-  public void printNumberOfEntries(DiaryRegister register){
+  public void printNumberOfEntries(DiaryRegister register) {
     int index = 0;
     for (DiaryEntry entry : register.getDiaryEntries()) {
       index++;
@@ -91,19 +93,20 @@ public class DiaryPrinter {
   /**
    * Prints the number of diary entries from a specific date.
    *
-   * @param date      the date to search for.
-   * @param register  the diary register to retrieve entries from.
+   * @param date the date to search for.
+   * @param register the diary register to retrieve entries from.
    */
-  public void printNumberOfEntriesFromDate(LocalDate date, DiaryRegister register){
-    try{
+  public void printNumberOfEntriesFromDate(LocalDate date, DiaryRegister register) {
+    try {
       List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
       System.out.println("Number of entries on " + date + ": " + entries.size());
-    } catch (IllegalArgumentException e) {                                                          
+    } catch (IllegalArgumentException e) {
       System.out.println("Number of entries on " + date + ": 0");
     }
   }
 
-  /** Prints diary entries sorted by date, newest first.
+  /**
+   * Prints diary entries sorted by date, newest first.
    *
    * @param register the diary register containing entries.
    */
@@ -196,7 +199,7 @@ public class DiaryPrinter {
     System.out.println("Enter the type of exercise (for example running, cycling or strength)");
   }
 
-  /** Prints a message indicating that the chosen option is invalid.*/
+  /** Prints a message indicating that the chosen option is invalid. */
   public void printInvalidOptionMessage() {
     System.out.println("Invalid Number! Please enter a number corresponding to the menu options!");
     System.out.println();

@@ -71,6 +71,15 @@ public class DiaryRegister {
     return new ArrayList<>(diaryEntries);
   }
 
+  /** Returns a copy of all diary entries stored in the register.
+   *
+   * @return a list containing copies of all diary entries.
+   *
+  public Iterator<DiaryEntry> getDiaryEntries() {
+    return diaryEntries.iterator();
+  }
+   */
+
   /**
    * Deletes all diary entries that match the specific date.
    *
