@@ -253,10 +253,14 @@ public class Ui {
     } catch (InputMismatchException e) {
       System.out.println("Date must be a number - diary entry could not be deleted!");
       inputReader.nextLine();
+
     } catch (DateTimeException e) {
       System.out.println("Invalid date entered - diary entry could not be deleted!");
+      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
+      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
     }
   }
 
@@ -280,13 +284,16 @@ public class Ui {
     printer.printEnterContentMessage();
     String content = inputReader.nextLine();
     printer.printEnterDurationMessage();
-    int duration;
-    try {
-      duration = inputReader.nextInt();
-    } catch (InputMismatchException e) {
-      System.out.println("Duration must be a number - diary entry could not be created!");
-      inputReader.nextLine();
-      return;
+    int duration = 0;
+    boolean validDuration = false;
+    while (!validDuration) {
+      try {
+        duration = inputReader.nextInt();
+        validDuration = true;
+      } catch (InputMismatchException e) {
+        System.out.println("Duration must be a number - diary entry could not be created!");
+        inputReader.nextLine();
+      }
     }
     printer.printEnterExerciseTypeMessage();
     String exerciseType = inputReader.next();
@@ -303,16 +310,19 @@ public class Ui {
 
       register.createAndAddDiaryEntryCustomDate(
           title, author, content, duration, exerciseType, date);
-    } catch (DateTimeException e) {
-      System.out.println("Invalid date entered - diary entry could not be created!");
-      System.err.println("Failure for date entry");
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-    }
-    //catch (Exception e)
-    //{
 
-    //}
+    } catch (DateTimeException e) {
+      System.out.println("Unable to create entry: invalid date.");
+      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+
+    } catch (IllegalArgumentException e) {
+      System.out.println("Unable to create entry: invalid arguments.");
+      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+
+    } catch (Exception e) {
+      System.out.println("Unable to create entry: unknown error.");
+      System.err.println("[DEBUG] Exception: " + e.getMessage()); // developer debug
+    }
   }
 
   /**
@@ -334,21 +344,30 @@ public class Ui {
     printer.printEnterContentMessage();
     String content = inputReader.nextLine();
     printer.printEnterDurationMessage();
-    int duration;
-    try {
-      duration = inputReader.nextInt();
-    } catch (InputMismatchException e) {
-      System.out.println("Duration must be a number - diary entry could not be created!");
-      inputReader.nextLine();
-      return;
+    int duration = 0;
+    boolean validDuration = false;
+    while (!validDuration) {
+      try {
+        duration = inputReader.nextInt();
+        validDuration = true;
+      } catch (InputMismatchException e) {
+        System.out.println("Duration must be a number. Please try again: ");
+        inputReader.nextLine();
+      }
     }
     printer.printEnterExerciseTypeMessage();
     String exerciseType = inputReader.next();
 
     try {
       register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
+
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
+      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+
+    } catch (Exception e) {
+      System.out.println("Unable to create entry: unknown error.");
+      System.err.println("[DEBUG] Exception: " + e.getMessage()); // developer debug
     }
   }
 
@@ -375,10 +394,14 @@ public class Ui {
     } catch (InputMismatchException e) {
       System.out.println("Date must be a number! Please try again.");
       inputReader.nextLine();
+
     } catch (DateTimeException e) {
       System.out.println("Invalid date entered - diary entry could not be printed!");
+      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
+      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
     }
   }
 }
