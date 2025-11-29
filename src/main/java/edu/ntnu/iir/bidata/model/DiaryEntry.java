@@ -144,7 +144,7 @@ public class DiaryEntry {
    * @param title the new title to set.
    * @throws IllegalArgumentException if the title is null or empty.
    */
-  public void setNewTitle(String title) {
+  private void setNewTitle(String title) {
     if (title == null || title.isEmpty()) {
       throw new IllegalArgumentException("Title is missing - diary entry could not be created!");
     } else {
@@ -158,7 +158,7 @@ public class DiaryEntry {
    * @param content the new content to set.
    * @throws IllegalArgumentException if the content is null or empty.
    */
-  public void setNewContent(String content) {
+  private void setNewContent(String content) {
     if (content == null || content.isEmpty()) {
       throw new IllegalArgumentException("Content is missing - diary entry could not be created!");
     } else {
@@ -172,7 +172,7 @@ public class DiaryEntry {
    * @param author the new author to set.
    * @throws IllegalArgumentException if the author is null or empty.
    */
-  public void setNewAuthor(String author) {
+  private void setNewAuthor(String author) {
     if (author == null || author.isEmpty()) {
       throw new IllegalArgumentException("Author is missing - diary entry could not be created!");
     } else {
@@ -186,7 +186,7 @@ public class DiaryEntry {
    * @param exercise the new exercise type to set.
    * @throws IllegalArgumentException if the exercise type is null or empty.
    */
-  public void setNewExerciseType(String exercise) {
+  private void setNewExerciseType(String exercise) {
     if (exercise == null || exercise.isEmpty()) {
       throw new IllegalArgumentException(
           "Exercise type is missing - " + "diary entry could not be created!");
@@ -203,7 +203,7 @@ public class DiaryEntry {
    * @param duration the new duration to set.
    * @throws IllegalArgumentException if the duration is outside the valid range.
    */
-  public void setMinDuration(int duration) {
+  private void setMinDuration(int duration) {
     if (duration <= 0) {
       throw new IllegalArgumentException("Duration of the session must be greater than 0");
     } else if (duration > 1440) {
@@ -221,7 +221,7 @@ public class DiaryEntry {
    * @param date the new date to set.
    * @throws IllegalArgumentException if the date is in the future.
    */
-  public void setDate(LocalDate date) {
+  private void setDate(LocalDate date) {
     if (date.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException(
           "You cannot set a date in the future - " + "diary entry could not be created!");
