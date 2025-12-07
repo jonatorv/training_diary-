@@ -22,28 +22,44 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 ## Project structure
 
+````markdown
+
+
+```plaintext
 .
 ├── .github/
 ├── src/
-│   ├── main/java/edu/ntnu/iir/bidata/
-│   │   ├── controller/
-│   │   │   └── menus/
-│   │   │       ├── EntryAdministrations.java
-│   │   │       ├── EntryOverview.java
-│   │   │       └── MainMenu.java
-│   │   ├── view/
-│   │   │   ├── DiaryPrinter.java
-│   │   │   └── Ui.java
-│   │   └── model/
-│   │       └── Main.java
-│   └── test/java/edu/ntnu/iir/bidata/
-│       ├── DiaryEntryTest.java
-│       └── DiaryRegisterTest.java
-│   └── test/resources/
-│       └── LesMeg.txt
+│   ├── main/
+│   │   └── java/
+│   │       └── edu/
+│   │           └── ntnu/
+│   │               └── iir/
+│   │                   └── bidata/
+│   │                       ├── Main.java
+│   │                       ├── controller/
+│   │                       │   └── menus/
+│   │                       │       ├── EntryAdministrations.java
+│   │                       │       ├── EntryOverview.java
+│   │                       │       └── MainMenu.java
+│   │                       ├── view/
+│   │                       │   ├── DiaryPrinter.java
+│   │                       │   └── Ui.java
+│   │                       └── model/
+│   │                           ├── DiaryEntry.java
+│   │                           └── DiaryRegister.java
+│   └── test/
+│       └── java/
+│           └── edu/
+│               └── ntnu/
+│                   └── iir/
+│                       └── bidata/
+│                           ├── DiaryEntryTest.java
+│                           └── DiaryRegisterTest.java
 ├── .gitignore
 ├── README.md
 └── pom.xml
+````
+
 
 
 
