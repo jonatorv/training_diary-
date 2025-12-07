@@ -1,17 +1,52 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/8WbEQaRE)
-# Portfolio project IDATA1003
+# Portfolio project IDATG1003
 This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
 
 [//]: # (TODO: Fill inn your name and student ID)
 
-STUDENT NAME = "Your name"  
+STUDENT NAME = Jonas Torvanger  
 STUDENT ID = "Your ID"
 
 ## Project description
 
-[//]: # (TODO: Write a short description of your project/product here.)
+This projects implements a console-based training diary where a user can register, view and delete training sessions. A session contains information such as: 
+
+- Title of the session
+- Author
+- Description
+- Duration in minutes
+- Exercise type
+- Date (automatic or custom)
+
+The goal of the projects has been to implement a solution with high cohesion and low coupling, using clean class reponsibilities, input validation and exception handling. 
 
 ## Project structure
+
+.
+├── .github/
+├── src/
+│   ├── main/java/edu/ntnu/iir/bidata/
+│   │   ├── controller/
+│   │   │   └── menus/
+│   │   │       ├── EntryAdministrations.java
+│   │   │       ├── EntryOverview.java
+│   │   │       └── MainMenu.java
+│   │   ├── view/
+│   │   │   ├── DiaryPrinter.java
+│   │   │   └── Ui.java
+│   │   └── model/
+│   │       └── Main.java
+│   └── test/java/edu/ntnu/iir/bidata/
+│       ├── DiaryEntryTest.java
+│       └── DiaryRegisterTest.java
+│   └── test/resources/
+│       └── LesMeg.txt
+├── .gitignore
+├── README.md
+└── pom.xml
+
+
+
 
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
