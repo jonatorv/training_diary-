@@ -22,8 +22,6 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 ## Project structure
 
-
-
 .
 ├── .github/
 ├── src/
@@ -40,7 +38,8 @@ The goal of the projects has been to implement a solution with high cohesion and
 │   │       └── Main.java
 │   └── test/java/edu/ntnu/iir/bidata/
 │       ├── DiaryEntryTest.java
-│       ├── DiaryRegisterTest.java
+│       └── DiaryRegisterTest.java
+│   └── test/resources/
 │       └── LesMeg.txt
 ├── .gitignore
 ├── README.md
