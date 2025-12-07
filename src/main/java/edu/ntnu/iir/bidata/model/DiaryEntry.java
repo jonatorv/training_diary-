@@ -5,15 +5,16 @@ import java.time.LocalDate;
 /**
  * Represents a single entry in the training diary.
  *
- * <p>Each diary entry stores information about a training session, including: </p>
+ * <p>Each diary entry stores information about a training session, including:
+ *
  * <ul>
- *   <li>A unique ID</li>
- *   <li>The author of the session</li>
- *   <li>The title of the session</li>
- *   <li>The content of the session</li>
- *   <li>The duration of the session in minutes</li>
- *   <li>The exercise type of the session</li>
- *   <li>The date of the session</li>
+ *   <li>A unique ID
+ *   <li>The author of the session
+ *   <li>The title of the session
+ *   <li>The content of the session
+ *   <li>The duration of the session in minutes
+ *   <li>The exercise type of the session
+ *   <li>The date of the session
  * </ul>
  */
 public class DiaryEntry {
@@ -29,14 +30,14 @@ public class DiaryEntry {
   /**
    * Creates a new DiaryEntry with the current date.
    *
-   * <p>The constructor assigns a unique ID to the entry and validates all
-   * fields before setting them. Any invalid values will result in an IllegalArgumentException</p>
+   * <p>The constructor assigns a unique ID to the entry and validates all fields before setting
+   * them. Any invalid values will result in an IllegalArgumentException
    *
-   * @param title         title of the training session.
-   * @param author        name of the author of the training session.
-   * @param content       notes about the training session.
-   * @param duration      duration of the training session.
-   * @param exerciseType  type of exercise.
+   * @param title title of the training session.
+   * @param author name of the author of the training session.
+   * @param content notes about the training session.
+   * @param duration duration of the training session.
+   * @param exerciseType type of exercise.
    */
   public DiaryEntry(
       String title, String author, String content, int duration, String exerciseType) {
@@ -53,8 +54,8 @@ public class DiaryEntry {
   /**
    * Creates a new DiaryEntry with the custom date.
    *
-   * <p>The constructor assigns a unique ID to the entry and validates all
-   * fields before setting them. Any invalid values will result in an IllegalArgumentException</p>
+   * <p>The constructor assigns a unique ID to the entry and validates all fields before setting
+   * them. Any invalid values will result in an IllegalArgumentException
    *
    * @param title title of the training session.
    * @param author name of the author of the training session.
@@ -134,6 +135,11 @@ public class DiaryEntry {
     return this.exerciseType;
   }
 
+  /**
+   * Returns the duration of this diary entry.
+   *
+   * @return the duration of the entry
+   */
   public int getDuration() {
     return this.duration;
   }
@@ -198,7 +204,7 @@ public class DiaryEntry {
   /**
    * Sets a duration for the entry.
    *
-   * <p>The duration must be between 1 and 1440 minutes (24 hours). </p>
+   * <p>The duration must be between 1 and 1440 minutes (24 hours).
    *
    * @param duration the new duration to set.
    * @throws IllegalArgumentException if the duration is outside the valid range.
@@ -216,7 +222,7 @@ public class DiaryEntry {
   /**
    * Sets a new date for the entry.
    *
-   * <p>The date cannot be in the future.</p>
+   * <p>The date cannot be in the future.
    *
    * @param date the new date to set.
    * @throws IllegalArgumentException if the date is in the future.
