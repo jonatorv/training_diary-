@@ -60,26 +60,76 @@ The goal of the projects has been to implement a solution with high cohesion and
 └── pom.xml
 ````
 
+### Package usage
 
-
-
-
-[//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
+Model: contains domain objects and business logic
+View: prints to the console
+Controller/menus: handles program flow and user interaction
+Test: contains JUnit tests
 
 ## Link to repository
 
-[//]: # (TODO: Include a link to your GitHub repository here.)
+https://github.com/NTNU-IE-IDI-IDATG1003-2025/mappe-idatg1003-2025-jonatorv
 
 ## How to run the project
 
-[//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
-What is the input and output of the program? What is the expected behaviour of the program?)
+### Requirements
+- Java 21 (or newer)
+- Maven
+
+### Run with IntelliJ (recommended)
+1. Download or clone the project from GitHub.
+2. Open the project folder in IntelliJ IDEA.
+3. In the project view, locate the class: edu.ntnu.iir.bidata.Main
+4. Right-click the file and choose: Run 'Main.main()'
+
+The console menu will appear in the Run window.
+
+### Program behaviour
+When the program starts, a console menu is displayed.
+Available actions:
+- View all diary entries
+- View entries from a specific date
+- View entries sorted by date (newest → oldest)
+- Create a new entry (automatic or custom date)
+- Delete entries from a selected date
+- Exit application
+
+The program reads input from the keyboard and prints information to the console.
 
 ## How to run the tests
 
-[//]: # (TODO: Describe how to run the tests here.)
+The project uses JUnit 5 for unit testing.
+All test classes are located under: src/test/java/edu/ntnu/iir/bidata/
+
+To run the tests in IntelliJ:
+
+1. Open the project in IntelliJ IDEA
+2. Right-click the test folder
+3. Choose Run 'Tests in bidata' (or Run 'All Tests')
+
+This will execute:
+- DiaryEntryTest
+- DiaryRegisterTest
+
+All tests are expected to run without errors.
 
 ## References
 
-[//]: # (TODO: Include references here, if any. For example, if you have used code from the course book, include a reference to the chapter.
-Or if you have used code from a website or other source, include a link to the source.)
+Java Platform SE 21 Documentation. (2024). Oracle.
+https://docs.oracle.com/en/java/javase/21/
+
+JUnit 5 User Guide. (2024).
+https://junit.org/junit5/docs/current/user-guide/
+
+Maven Documentation. (2024). Apache Software Foundation.
+https://maven.apache.org/
+
+Google Java Style Guide. (2024).
+https://google.github.io/styleguide/javaguide.html
+
+CheckStyle Documentation. (2024).
+https://checkstyle.sourceforge.io/
+
+GitHub Documentation. (2024).
+https://docs.github.com/
