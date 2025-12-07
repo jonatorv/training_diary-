@@ -84,26 +84,31 @@ public class DiaryPrinter {
    */
   public void printNumberOfEntries(DiaryRegister register) {
     int index = 0;
-    for (DiaryEntry entry : register.getDiaryEntries()) {
+    for (DiaryEntry ignored : register.getDiaryEntries()) {
       index++;
     }
     System.out.println("Number of entries: " + index);
   }
 
-  /**
-   * Prints the number of diary entries from a specific date.
-   *
-   * @param date the date to search for.
-   * @param register the diary register to retrieve entries from.
-   */
-  public void printNumberOfEntriesFromDate(LocalDate date, DiaryRegister register) {
-    try {
-      List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
-      System.out.println("Number of entries on " + date + ": " + entries.size());
-    } catch (IllegalArgumentException e) {
-      System.out.println("Number of entries on " + date + ": 0");
-    }
-  }
+  // /**
+  // * Prints the number of diary entries from a specific date.
+  // *
+  // * <p>This method was originally planned to print the number of diary entries for a given date
+  // * directly from the UI, but it was not implemented. The required functionality is ready to be
+  // * used.
+  // *
+  // * @param date the date to search for.
+  // * @param register the diary register to retrieve entries from.
+  // */
+  // Not implemented:
+  // public void printNumberOfEntriesFromDate(LocalDate date, DiaryRegister register) {
+  //  try {
+  //    List<DiaryEntry> entries = register.findDiaryEntriesByDate(date);
+  //    System.out.println("Number of entries on" + date + ": " + entries.size());
+  //  } catch (IllegalArgumentException e) {
+  //    System.out.println("Number of entries on " + date + ": 0");
+  //  }
+  // }
 
   /**
    * Prints diary entries sorted by date, newest first.
@@ -176,7 +181,7 @@ public class DiaryPrinter {
 
   /** Prints a prompt asking for a title. */
   public void printEnterTitleMessage() {
-    System.out.println("Please enter the title of the trainingsession: ");
+    System.out.println("Please enter the title of the training-session: ");
   }
 
   /** Prints a prompt asking for an author. */

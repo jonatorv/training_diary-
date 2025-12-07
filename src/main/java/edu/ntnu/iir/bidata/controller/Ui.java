@@ -32,25 +32,15 @@ public class Ui {
     register = new DiaryRegister();
     printer = new DiaryPrinter();
 
-    try {
-      register.createAndAddDiaryEntry("Maraton", "Jonas", "Halvmaraton", 90, "løping");
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      System.out.println("------------------------------");
-    }
-    try {
-      register.createAndAddDiaryEntryCustomDate(
-          "Halvmaraton", "Jonas", "Maraton", 90, "løping", LocalDate.of(2025, 10, 4));
-    } catch (IllegalArgumentException e) {
-      System.out.println(e.getMessage());
-      System.out.println("------------------------------");
-    }
+    register.createAndAddDiaryEntry("Raceday", "Jonas", "Half marathon", 90, "Running");
+    register.createAndAddDiaryEntryCustomDate(
+        "Rest day", "Jonas", "10km easy run", 40, "Running", LocalDate.of(2025, 10, 4));
   }
 
   /**
    * Starts the main application.
    *
-   * <p>This method displays the welcome message and repeatedly reads the user´s main menu choice.
+   * <p>This method displays the welcome message and repeatedly reads the user's main menu choice.
    * Based on the selected options, it delegates the user to either the overview menu or
    * administration menu. When the user selects the EXIT option, it will terminate the session and
    * exit the program.
@@ -62,7 +52,6 @@ public class Ui {
 
     while (running) {
       printer.printNumberOfEntries(register);
-      printer.printNumberOfEntriesFromDate(LocalDate.now(), register);
       int mainMenuChoice = 0;
       boolean invalidMainMenu = false;
       try {
@@ -76,7 +65,7 @@ public class Ui {
       if (mainMenuChoice < 0 || mainMenuChoice >= MainMenu.values().length) {
         printer.printInvalidOptionMessage();
       } else if (invalidMainMenu) {
-        // Do nothing, already handled in catch block above.
+        // Do nothing, already handled in the catch block above.
       } else {
 
         MainMenu mainMenu = MainMenu.values()[mainMenuChoice];
@@ -105,7 +94,7 @@ public class Ui {
   /**
    * Runs the overview menu loop and handles all the overview menu options.
    *
-   * <p>This method repeatedly displays the overview menu, reads the user´s choice, validates the
+   * <p>This method repeatedly displays the overview menu, reads the user's choice, validates the
    * input, and performs the corresponding action such as printing all the entries, printing all the
    * entries from a specific date, or printing all the entries sorted by date (newest first). The
    * loop terminates when the user selects the EXIT option.
@@ -129,7 +118,7 @@ public class Ui {
       if (overviewMenuChoice < 0 || overviewMenuChoice >= EntryOverview.values().length) {
         printer.printInvalidOptionMessage();
       } else if (invalidRunningOverviewMenu) {
-        // Do nothing, already handled in catch block above.
+        // Do nothing, already handled in the catch block above.
       } else {
         EntryOverview entryOverview = EntryOverview.values()[overviewMenuChoice];
 
@@ -162,7 +151,7 @@ public class Ui {
   /**
    * Runs the administration menu loop and handles all the administration menu options.
    *
-   * <p>This method repeatedly displays the administration menu, reads the user´s choice, validates
+   * <p>This method repeatedly displays the administration menu, reads the user's choice, validates
    * the input, and performs the corresponding action such as creating entries, creating entries
    * with a custom date, or deleting entries from a specific date. The loop terminates when the user
    * selects the EXIT option.
@@ -188,7 +177,7 @@ public class Ui {
           || administrationMenuChoice >= EntryAdministrations.values().length) {
         printer.printInvalidOptionMessage();
       } else if (invalidAdministrationMenu) {
-        // Do nothing, already handled in catch block above.
+        // Do nothing, already handled in the catch block above.
       } else {
         EntryAdministrations entryAdministrations =
             EntryAdministrations.values()[administrationMenuChoice];
@@ -220,10 +209,10 @@ public class Ui {
   }
 
   /**
-   * Deletes a diary entries from a specific date in the register, based on user input.
+   * Deletes diary entries from a specific date in the register, based on user input.
    *
    * <p>The method reads a day, month, and a year from the user and deletes all diary entries stored
-   * on that date. Invalid number input, invalid calender dates, or other illegal values are handled
+   * on that date. Invalid number input, invalid calendar dates, or other illegal values are handled
    * internally to prevent the program from crashing.
    *
    * @param inputReader Scanner for user input.
@@ -256,22 +245,24 @@ public class Ui {
 
     } catch (DateTimeException e) {
       System.out.println("Invalid date entered - diary entry could not be deleted!");
-      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] DateTimeException: " + e); // developer debug
+      inputReader.nextLine();
 
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] IllegalArgumentException: " + e); // developer debug
+      inputReader.nextLine();
     }
   }
 
   /**
    * Creates and adds a diary entry to the register using a custom date, based on user input.
    *
-   * <p>The method reads title, author, content, exerciseType, and at specific date (day, month, and
-   * year) from the user. If duration is not a valid number or is outside the allowed range (1-1440
-   * minutes), the input is discarded and the entry is not created. The method also handles invalid
-   * or empty input for all the other fields and prevents dates or invalid diary entries from being
-   * added to the register.
+   * <p>The method reads title, author, content, exerciseType, and at a specific date (day, month,
+   * and year) from the user. If duration is not a valid number or is outside the allowed range
+   * (1-1440 minutes), the input is discarded and the entry is not created. The method also handles
+   * invalid or empty input for all the other fields and prevents dates or invalid diary entries
+   * from being added to the register.
    *
    * @param inputReader Scanner for user input.
    */
@@ -311,17 +302,25 @@ public class Ui {
       register.createAndAddDiaryEntryCustomDate(
           title, author, content, duration, exerciseType, date);
 
+    } catch (InputMismatchException e) {
+      System.out.println("Date must be a number! Please try again.");
+      System.err.println("[DEBUG] InputMismatchException: " + e); // developer debug
+      inputReader.nextLine();
+
     } catch (DateTimeException e) {
       System.out.println("Unable to create entry: invalid date.");
-      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] DateTimeException: " + e); // developer debug
+      inputReader.nextLine();
 
     } catch (IllegalArgumentException e) {
       System.out.println("Unable to create entry: invalid arguments.");
-      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] IllegalArgumentException: " + e); // developer debug
+      inputReader.nextLine();
 
     } catch (Exception e) {
       System.out.println("Unable to create entry: unknown error.");
-      System.err.println("[DEBUG] Exception: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] Exception: " + e); // developer debug
+      inputReader.nextLine();
     }
   }
 
@@ -363,20 +362,22 @@ public class Ui {
 
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] IllegalArgumentException: " + e); // developer debug
+      inputReader.nextLine();
 
     } catch (Exception e) {
       System.out.println("Unable to create entry: unknown error.");
-      System.err.println("[DEBUG] Exception: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] Exception: " + e); // developer debug
+      inputReader.nextLine();
     }
   }
 
   /**
    * Print diary entries from a date specified by the user.
    *
-   * <p>The method reads a day, month and a year from the user and displays all diary entries stored
-   * on that date. Any invalid number, invalid date values, or lookup errors in the register are
-   * handled internally.
+   * <p>The method reads a day, month, and a year from the user and displays all diary entries
+   * stored on that date. Any invalid number, invalid date values, or lookup errors in the register
+   * are handled internally.
    *
    * @param inputReader Scanner for user input.
    */
@@ -393,15 +394,18 @@ public class Ui {
 
     } catch (InputMismatchException e) {
       System.out.println("Date must be a number! Please try again.");
+      System.err.println("[DEBUG] InputMismatchException: " + e); // developer debug
       inputReader.nextLine();
 
     } catch (DateTimeException e) {
       System.out.println("Invalid date entered - diary entry could not be printed!");
-      System.err.println("[DEBUG] DateTimeException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] DateTimeException: " + e); // developer debug
+      inputReader.nextLine();
 
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      System.err.println("[DEBUG] IllegalArgumentException: " + e.getMessage()); // developer debug
+      System.err.println("[DEBUG] IllegalArgumentException: " + e); // developer debug
+      inputReader.nextLine();
     }
   }
 }

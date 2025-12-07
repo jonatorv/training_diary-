@@ -5,12 +5,13 @@ import edu.ntnu.iir.bidata.controller.Ui;
 /**
  * The entry point of the application.
  *
- * <p>This class is responsible for creating the Ui instance and starting the training diary application. </p>
+ * <p>This class is responsible for creating the Ui instance and
+ * starting the training diary application. </p>
  */
 public class Main {
 
   /**
-   * The main method of the program
+   * The main method of the program.
    *
    * <p>It initializes the user interface, loads initial data, and starts the application loop.</p>
    *

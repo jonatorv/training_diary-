@@ -42,7 +42,7 @@ public class DiaryRegister {
   }
 
   /**
-   * Creates a new diary entry with custom date and adds it to the diary register.
+   * Creates a new diary entry with a custom date and adds it to the diary register.
    *
    * @param date the date of the entry.
    * @param title the title of the entry.
@@ -70,15 +70,6 @@ public class DiaryRegister {
   public List<DiaryEntry> getDiaryEntries() {
     return new ArrayList<>(diaryEntries);
   }
-
-  /** Returns a copy of all diary entries stored in the register.
-   *
-   * @return a list containing copies of all diary entries.
-   *
-  public Iterator<DiaryEntry> getDiaryEntries() {
-    return diaryEntries.iterator();
-  }
-   */
 
   /**
    * Deletes all diary entries that match the specific date.
