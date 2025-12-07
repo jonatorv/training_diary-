@@ -24,6 +24,30 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 
 
+.
+├── .github/
+├── src/
+│   ├── main/java/edu/ntnu/iir/bidata/
+│   │   ├── controller/
+│   │   │   └── menus/
+│   │   │       ├── EntryAdministrations.java
+│   │   │       ├── EntryOverview.java
+│   │   │       └── MainMenu.java
+│   │   ├── view/
+│   │   │   ├── DiaryPrinter.java
+│   │   │   └── Ui.java
+│   │   └── model/
+│   │       └── Main.java
+│   └── test/java/edu/ntnu/iir/bidata/
+│       ├── DiaryEntryTest.java
+│       ├── DiaryRegisterTest.java
+│       └── LesMeg.txt
+├── .gitignore
+├── README.md
+└── pom.xml
+
+
+
 
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
