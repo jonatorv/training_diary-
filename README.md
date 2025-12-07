@@ -1,8 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/8WbEQaRE)
 # Portfolio project IDATG1003
-This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
-
-[//]: # (TODO: Fill inn your name and student ID)
 
 STUDENT NAME = Jonas Torvanger  
 STUDENT ID = "Your ID"
@@ -22,48 +19,116 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 ## Project structure
 
+The project follows a Model–View–Controller (MVC) structure.
+
+````markdown
+
+
+```plaintext
 .
 ├── .github/
 ├── src/
-│   ├── main/java/edu/ntnu/iir/bidata/
-│   │   ├── controller/
-│   │   │   └── menus/
-│   │   │       ├── EntryAdministrations.java
-│   │   │       ├── EntryOverview.java
-│   │   │       └── MainMenu.java
-│   │   ├── view/
-│   │   │   ├── DiaryPrinter.java
-│   │   │   └── Ui.java
-│   │   └── model/
-│   │       └── Main.java
-│   └── test/java/edu/ntnu/iir/bidata/
-│       ├── DiaryEntryTest.java
-│       └── DiaryRegisterTest.java
-│   └── test/resources/
-│       └── LesMeg.txt
+│   ├── main/
+│   │   └── java/
+│   │       └── edu/
+│   │           └── ntnu/
+│   │               └── iir/
+│   │                   └── bidata/
+│   │                       ├── Main.java
+│   │                       ├── controller/
+│   │                       │   └── menus/
+│   │                       │       ├── EntryAdministrations.java
+│   │                       │       ├── EntryOverview.java
+│   │                       │       └── MainMenu.java
+│   │                       ├── view/
+│   │                       │   ├── DiaryPrinter.java
+│   │                       │   └── Ui.java
+│   │                       └── model/
+│   │                           ├── DiaryEntry.java
+│   │                           └── DiaryRegister.java
+│   └── test/
+│       └── java/
+│           └── edu/
+│               └── ntnu/
+│                   └── iir/
+│                       └── bidata/
+│                           ├── DiaryEntryTest.java
+│                           └── DiaryRegisterTest.java
 ├── .gitignore
 ├── README.md
 └── pom.xml
+````
 
+### Package usage
 
-
-
-[//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
+- Model: contains domain objects and business logic
+- View: prints to the console
+- Controller/menus: handles program flow and user interaction
+- Test: contains JUnit tests
 
 ## Link to repository
 
-[//]: # (TODO: Include a link to your GitHub repository here.)
+https://github.com/NTNU-IE-IDI-IDATG1003-2025/mappe-idatg1003-2025-jonatorv
 
 ## How to run the project
 
-[//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
-What is the input and output of the program? What is the expected behaviour of the program?)
+### Requirements
+- Java 21 (or newer)
+- Maven
+
+### Run with IntelliJ (recommended)
+1. Download or clone the project from GitHub.
+2. Open the project folder in IntelliJ IDEA.
+3. In the project view, locate the class: edu.ntnu.iir.bidata.Main
+4. Right-click the file and choose: Run 'Main.main()'
+
+The console menu will appear in the Run window.
+
+### Program behaviour
+When the program starts, a console menu is displayed.
+Available actions:
+- View all diary entries
+- View entries from a specific date
+- View entries sorted by date (newest → oldest)
+- Create a new entry (automatic or custom date)
+- Delete entries from a selected date
+- Exit application
+
+The program reads input from the keyboard and prints information to the console.
 
 ## How to run the tests
 
-[//]: # (TODO: Describe how to run the tests here.)
+The project uses JUnit 5 for unit testing.
+All test classes are located under: src/test/java/edu/ntnu/iir/bidata/
+
+To run the tests in IntelliJ:
+
+1. Open the project in IntelliJ IDEA
+2. Right-click the test folder
+3. Choose Run 'Tests in bidata' (or Run 'All Tests')
+
+This will execute:
+- DiaryEntryTest
+- DiaryRegisterTest
+
+All tests are expected to run without errors.
 
 ## References
 
-[//]: # (TODO: Include references here, if any. For example, if you have used code from the course book, include a reference to the chapter.
-Or if you have used code from a website or other source, include a link to the source.)
+Java Platform SE 21 Documentation. (2024). Oracle.
+https://docs.oracle.com/en/java/javase/21/
+
+JUnit 5 User Guide. (2024).
+https://junit.org/junit5/docs/current/user-guide/
+
+Maven Documentation. (2024). Apache Software Foundation.
+https://maven.apache.org/
+
+Google Java Style Guide. (2024).
+https://google.github.io/styleguide/javaguide.html
+
+CheckStyle Documentation. (2024).
+https://checkstyle.sourceforge.io/
+
+GitHub Documentation. (2024).
+https://docs.github.com/
