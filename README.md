@@ -9,9 +9,22 @@ STUDENT ID = "Your ID"
 
 ## Project description
 
-[//]: # (TODO: Write a short description of your project/product here.)
+This projects implements a console-based training diary where a user can register, view and delete training sessions. A session contains information such as: 
+
+- Title of the session
+- Author
+- Description
+- Duration in minutes
+- Exercise type
+- Date (automatic or custom)
+
+The goal of the projects has been to implement a solution with high cohesion and low coupling, using clean class reponsibilities, input validation and exception handling. 
 
 ## Project structure
+
+
+
+
 
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
