@@ -1,8 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/8WbEQaRE)
 # Portfolio project IDATG1003
-This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
-
-[//]: # (TODO: Fill inn your name and student ID)
 
 STUDENT NAME = Jonas Torvanger  
 STUDENT ID = "Your ID"
@@ -21,6 +18,8 @@ This projects implements a console-based training diary where a user can registe
 The goal of the projects has been to implement a solution with high cohesion and low coupling, using clean class reponsibilities, input validation and exception handling. 
 
 ## Project structure
+
+The project follows a Model–View–Controller (MVC) structure.
 
 ````markdown
 
@@ -62,10 +61,10 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 ### Package usage
 
-Model: contains domain objects and business logic
-View: prints to the console
-Controller/menus: handles program flow and user interaction
-Test: contains JUnit tests
+- Model: contains domain objects and business logic
+- View: prints to the console
+- Controller/menus: handles program flow and user interaction
+- Test: contains JUnit tests
 
 ## Link to repository
 
