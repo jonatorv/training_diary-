@@ -25,7 +25,6 @@ The goal of the projects has been to implement a solution with high cohesion and
 
 
 
-
 [//]: # (TODO: Describe the structure of your project here. How have you used packages in your structure. Where are all sourcefiles stored. Where are all JUnit-test classes stored. etc.)
 
 ## Link to repository
