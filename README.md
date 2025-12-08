@@ -93,7 +93,17 @@ Available actions:
 - Delete entries from a selected date
 - Exit application
 
-The program reads input from the keyboard and prints information to the console.
+The program reads input from the keyboard and prints information to the console. 
+
+If If IntelliJ reports “No JDK” or “JDK missing”, set the Project SDK to Java 21: 
+
+- File → Project Structure → Project → Project SDK = 21
+
+Then reload Maven: 
+
+- Maven → Reload All Maven Projects
+
+
 
 ## How to run the tests
 
