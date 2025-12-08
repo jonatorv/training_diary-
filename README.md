@@ -2,7 +2,7 @@
 # Portfolio project IDATG1003
 
 STUDENT NAME = Jonas Torvanger  
-STUDENT ID = "Your ID"
+STUDENT ID = 10033
 
 ## Project description
 
