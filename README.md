@@ -5,7 +5,7 @@ STUDENT ID = 10033
 
 ## Project description
 
-This projects implements a console-based training diary where a user can register, view and delete training sessions. A session contains information such as: 
+This project implements a console-based training diary where a user can register, view and delete training sessions. A session contains information such as: 
 
 - Title of the session
 - Author
@@ -14,7 +14,7 @@ This projects implements a console-based training diary where a user can registe
 - Exercise type
 - Date (automatic or custom)
 
-The goal of the projects has been to implement a solution with high cohesion and low coupling, using clean class reponsibilities, input validation and exception handling. 
+The goal of the project has been to implement a solution with high cohesion and low coupling, using clean class reponsibilities, input validation and exception handling. 
 
 ## Project structure
 
