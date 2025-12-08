@@ -219,4 +219,10 @@ public class DiaryPrinter {
   public void deleteDiaryEntryFalseMessage() {
     System.out.println("No diary entry found on the specified date!");
   }
+
+  /** Prints a success message when a diary entry is successfully created. */
+  public void printSuccessMessage() {
+    System.out.println("Entry created successfully!");
+  }
+
 }

@@ -302,6 +302,8 @@ public class Ui {
       register.createAndAddDiaryEntryCustomDate(
           title, author, content, duration, exerciseType, date);
 
+      printer.printSuccessMessage();
+
     } catch (InputMismatchException e) {
       System.out.println("Date must be a number! Please try again.");
       System.err.println("[DEBUG] InputMismatchException: " + e); // developer debug
@@ -359,6 +361,7 @@ public class Ui {
 
     try {
       register.createAndAddDiaryEntry(title, author, content, duration, exerciseType);
+      printer.printSuccessMessage();
 
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
